@@ -28,7 +28,7 @@
         <?php endforeach; ?>
       </tbody>
     </table></p>
-    <?= $enlaces ?>
+    <p><?= $enlaces ?></p>
   </body>
 </html>
 
