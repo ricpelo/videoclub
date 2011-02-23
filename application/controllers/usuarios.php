@@ -1,4 +1,7 @@
 <?php
+
+/* Ejemplo */
+
 class Usuarios extends CI_Controller {
 
   function __construct() {
