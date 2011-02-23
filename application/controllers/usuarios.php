@@ -1,6 +1,6 @@
 <?php
 
-/* Ejemplo */
+/* Ejemplo de prueba */
 
 class Usuarios extends CI_Controller {
 
