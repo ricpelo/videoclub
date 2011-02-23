@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>Listado de socios</title>
+    <title>Listado de socios del videoclb</title>
   </head>
   <body>
       <?= form_open('usuarios/logout') ?>
