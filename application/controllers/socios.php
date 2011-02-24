@@ -1,6 +1,6 @@
 <?php
 
-define("FPP", 4);
+define("FPP", 100);
 
 class Socios extends CI_Controller {
 
