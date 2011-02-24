@@ -23,7 +23,7 @@ create table peliculas (
   precio_compra   numeric(5,2),
   precio_alquiler numeric(4,2),
   fecha_alta      date,
-  activa 	  boolean default true
+  activa          bool not null default true
 ) without oids;
 
 insert into peliculas (codigo, titulo, precio_compra, precio_alquiler, fecha_alta)
@@ -59,4 +59,57 @@ create table ci_sessions (
   last_activity int4 DEFAULT 0 NOT NULL constraint ck_positivo check (last_activity >= 0),
   user_data text DEFAULT '' NOT NULL,
   PRIMARY KEY (session_id)
-);
+) without oids;
+
+drop table usuarios cascade;
+
+create table usuarios (
+  id_usuario     bigserial constraint pk_usuarios primary key,
+  nombre_usuario varchar(15) not null constraint uq_nombre_usuario_unico unique,
+  password       char(32) not null
+) without oids;
+
+drop view disponibles cascade;
+
+create view disponibles as
+SELECT peliculas.codigo
+   FROM peliculas
+  WHERE NOT (peliculas.codigo IN (SELECT alquileres.codigo
+           FROM alquileres
+          WHERE alquileres.fdev IS NULL));
+
+drop view disponibles_y_activas cascade;
+
+create view disponibles_y_activas as
+SELECT peliculas.codigo
+   FROM peliculas
+  WHERE NOT (peliculas.codigo IN ( SELECT alquileres.codigo
+           FROM alquileres
+          WHERE alquileres.fdev IS NULL)) AND peliculas.activa = true;
+
+drop view pelis cascade;
+
+create view pelis as
+SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alq, peliculas.fech_alt_pel, peliculas.activa, true AS disponible
+           FROM peliculas
+          WHERE (peliculas.codigo IN ( SELECT disponibles.codigo
+                   FROM disponibles))
+UNION 
+         SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alq, peliculas.fech_alt_pel, peliculas.activa, false AS disponible
+           FROM peliculas
+          WHERE NOT (peliculas.codigo IN ( SELECT disponibles.codigo
+                   FROM disponibles));
+
+drop view pelis_activas cascade;
+
+create view pelis_activas as
+SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alq, peliculas.fech_alt_pel, true AS disponible
+           FROM peliculas
+          WHERE peliculas.activa = true AND (peliculas.codigo IN ( SELECT disponibles_y_activas.codigo
+                   FROM disponibles_y_activas))
+UNION 
+         SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alq, peliculas.fech_alt_pel, false AS disponible
+           FROM peliculas
+          WHERE peliculas.activa = true AND NOT (peliculas.codigo IN ( SELECT disponibles_y_activas.codigo
+                   FROM disponibles_y_activas));
+
