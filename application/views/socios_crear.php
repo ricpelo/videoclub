@@ -5,8 +5,7 @@
     <title>Crear un nuevo socio</title>
   </head>
   <body>
-	<!--Esto es una prueva -->	
-      <div><p><?= validation_errors() ?></p></div>
+    <div><p><?= validation_errors() ?></p></div>
     <p><?= form_open('socios/crear') ?>
       <?= form_label('Número:', 'numero') ?>
       <?= form_input('numero', set_value('numero')) ?><br/>
