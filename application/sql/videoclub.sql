@@ -49,7 +49,7 @@ values (1, 1, current_date, null);
 insert into alquileres (numero, codigo, falq, fdev)
 values (2, 3, current_date - 1, current_date);
 
-drop table ci_sessions cacade;
+drop table ci_sessions cascade;
 
 create table ci_sessions (
   session_id varchar(40) DEFAULT '0' NOT NULL,
