@@ -22,7 +22,8 @@ create table peliculas (
   titulo          varchar(30) not null,
   precio_compra   numeric(5,2),
   precio_alquiler numeric(4,2),
-  fecha_alta      date
+  fecha_alta      date,
+  activa 	  boolean default true
 ) without oids;
 
 insert into peliculas (codigo, titulo, precio_compra, precio_alquiler, fecha_alta)
