@@ -17,7 +17,7 @@ class Usuarios extends CI_Controller {
       $nombre = $this->input->post('nombre');
       $password = $this->input->post('password');
       $consulta = $this->db->query("select * from usuarios
-                                    where nombre = '$nombre' and
+                                    where nombre_usuario = '$nombre' and
                                     password = md5('$password')");
       if ($consulta->num_rows() == 0) {
         $data['une'] = 'Usuario no encontrado';
