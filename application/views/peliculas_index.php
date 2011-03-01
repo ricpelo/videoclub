@@ -13,7 +13,7 @@
     <p><?= $exito ?></p>
     <p><table border="1">
       <thead>
-        <th>Código</th><th>Título</th><th>Precio Compra</th><th>Precio Alquiler</th><th>Fecha Alta</th><th>¿Activa?</th>
+        <th>Código</th><th>Título</th>><th>Precio Alquiler</th><th>Fecha Alta</th><th>¿Activa?</th>
       </thead>
       <tbody>
         <?php foreach ($filas as $fila): ?>
@@ -22,12 +22,19 @@
                            $fila['codigo']) ?></td>
             <td><?= anchor('peliculas/editar/' . $fila['titulo'],
                            $fila['titulo']) ?></td>
-            <td><?= anchor('peliculas/editar/' . $fila['precio_compra'],
-                           $fila['precio_compra']) ?></td>
-            <td><?= anchor('peliculas/editar/' . $fila['precio_alquiler'],
-                           $fila['precio_alquiler']) ?></td>
-            <td><?= anchor('peliculas/editar/' . $fila['fecha_alta'],
-                           $fila['fecha_alta']) ?></td>
+            <td><?= anchor('peliculas/editar/' . $fila['precio_alq'],
+                           $fila['precio_alq']) ?></td>
+            <td><?= anchor('peliculas/editar/' . $fila['fech_alt_pel'],
+                           $fila['fech_alt_pel']) ?></td>
+	  <td>
+	  <?php if($fila['activa'] == true ){ ?>
+	  <?= anchor('peliculas/editar/' . $fila['activa'],
+                           'Disponible') ?>
+	  <?php }else{ ?>
+	  <?= anchor('peliculas/editar/' . $fila['activa'],
+                           'No disponible') ?>
+	  <?php } ?>
+	  </td>
           </tr>
         <?php endforeach; ?>
       </tbody>
