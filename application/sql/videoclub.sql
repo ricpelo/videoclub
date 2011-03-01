@@ -69,6 +69,8 @@ create table usuarios (
   password       char(32) not null
 ) without oids;
 
+insert into usuarios(nombre_usuario, password)values('leandro', md5('leandro'));
+
 drop view disponibles cascade;
 
 create view disponibles as
@@ -103,12 +105,12 @@ UNION
 drop view pelis_activas cascade;
 
 create view pelis_activas as
-SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alq, peliculas.fech_alt_pel, true AS disponible
+SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alquiler, peliculas.fecha_alta, true AS disponible
            FROM peliculas
           WHERE peliculas.activa = true AND (peliculas.codigo IN ( SELECT disponibles_y_activas.codigo
                    FROM disponibles_y_activas))
 UNION 
-         SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alq, peliculas.fech_alt_pel, false AS disponible
+         SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alquiler, peliculas.fecha_alta, false AS disponible
            FROM peliculas
           WHERE peliculas.activa = true AND NOT (peliculas.codigo IN ( SELECT disponibles_y_activas.codigo
                    FROM disponibles_y_activas));

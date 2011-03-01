@@ -5,6 +5,7 @@
     <title>Listado de socios del videoclb</title>
   </head>
   <body>
+      <p>
       <?= form_open('usuarios/logout') ?>
         <p align="right">Usuario: <?= $usuario ?>
         <?= form_submit('salir', 'Salir') ?>

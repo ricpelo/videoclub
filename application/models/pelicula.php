@@ -4,7 +4,7 @@ class Pelicula extends CI_Model {
   function __construct() {
     parent::__construct();
   }
-  // SOY UN COMENTARIO DIVERTIDO AJJAJAJJAJAJ
+
   function obtener_todas() {
     $consulta = $this->db->query("select * from peliculas");
     return ($consulta->num_rows() > 0) ? $consulta->result_array() : false;
