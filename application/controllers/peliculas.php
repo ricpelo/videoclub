@@ -94,7 +94,6 @@ class Peliculas extends CI_Controller {
   	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
   	$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required');
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
-	$this->form_validation->set_rules('fech_alt_pel', 'Fecha alta', 'trim|required');
   	
     if (!$this->input->post('crear')) {
       $this->load->view('peliculas_crear');
