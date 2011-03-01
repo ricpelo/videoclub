@@ -20,18 +20,17 @@ drop table peliculas cascade;
 create table peliculas (
   codigo          numeric(5) constraint pk_peliculas primary key,
   titulo          varchar(30) not null,
-  precio_compra   numeric(5,2),
-  precio_alquiler numeric(4,2),
-  fecha_alta      date,
+  precio_alq      numeric(4,2),
+  fech_alt_pel    date default current_date,
   activa          bool not null default true
 ) without oids;
 
-insert into peliculas (codigo, titulo, precio_compra, precio_alquiler, fecha_alta)
-values (1, 'Ciudadano Kane', 110, 1, current_date - 3);
-insert into peliculas (codigo, titulo, precio_compra, precio_alquiler, fecha_alta)
-values (2, 'Los bingueros', 90, 1.50, current_date - 2);
-insert into peliculas (codigo, titulo, precio_compra, precio_alquiler, fecha_alta)
-values (3, 'Avatar', 180, 3, current_date - 1);
+insert into peliculas (codigo, titulo, precio_alq, fech_alt_pel)
+values (1, 'Ciudadano Kane', 1, current_date - 3);
+insert into peliculas (codigo, titulo, precio_alq, fech_alt_pel)
+values (2, 'Los bingueros', 1.50, current_date - 2);
+insert into peliculas (codigo, titulo, precio_alq, fech_alt_pel)
+values (3, 'Avatar', 3, current_date - 1);
 
 drop table alquileres cascade;
 
@@ -105,12 +104,12 @@ UNION
 drop view pelis_activas cascade;
 
 create view pelis_activas as
-SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alquiler, peliculas.fecha_alta, true AS disponible
+SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alq, peliculas.fech_alt_pel, true AS disponible
            FROM peliculas
           WHERE peliculas.activa = true AND (peliculas.codigo IN ( SELECT disponibles_y_activas.codigo
                    FROM disponibles_y_activas))
 UNION 
-         SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alquiler, peliculas.fecha_alta, false AS disponible
+         SELECT peliculas.codigo, peliculas.titulo, peliculas.precio_alq, peliculas.fech_alt_pel, false AS disponible
            FROM peliculas
           WHERE peliculas.activa = true AND NOT (peliculas.codigo IN ( SELECT disponibles_y_activas.codigo
                    FROM disponibles_y_activas));
