@@ -13,7 +13,7 @@
     <p><?= $exito ?></p>
     <p><table border="1">
       <thead>
-        <th>Código</th><th>Título</th><th>Precio Compra</th><th>Precio Alquiler</th><th>Fecha Alta</th>
+        <th>Código</th><th>Título</th><th>Precio Compra</th><th>Precio Alquiler</th><th>Fecha Alta</th><th>¿Activa?</th>
       </thead>
       <tbody>
         <?php foreach ($filas as $fila): ?>
