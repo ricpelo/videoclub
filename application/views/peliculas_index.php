@@ -28,10 +28,10 @@
                            $fila['fech_alt_pel']) ?></td>
 	  <td>
 	  <?php if($fila['activa'] == true ){ ?>
-	  <?= anchor('peliculas/editar/' . $fila['activa'],
+	  <?= anchor('peliculas/editar/' .  $fila['codigo'],
                            'Disponible') ?>
 	  <?php }else{ ?>
-	  <?= anchor('peliculas/editar/' . $fila['activa'],
+	  <?= anchor('peliculas/editar/' .  $fila['codigo'],
                            'No disponible') ?>
 	  <?php } ?>
 	  </td>
