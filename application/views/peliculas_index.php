@@ -20,11 +20,11 @@
           <tr>
             <td><?= anchor('peliculas/editar/' . $fila['codigo'],
                            $fila['codigo']) ?></td>
-            <td><?= anchor('peliculas/editar/' . $fila['titulo'],
+            <td><?= anchor('peliculas/editar/' . $fila['codigo'],
                            $fila['titulo']) ?></td>
-            <td><?= anchor('peliculas/editar/' . $fila['precio_alq'],
+            <td><?= anchor('peliculas/editar/' . $fila['codigo'],
                            $fila['precio_alq']) ?></td>
-            <td><?= anchor('peliculas/editar/' . $fila['fech_alt_pel'],
+            <td><?= anchor('peliculas/editar/' . $fila['codigo'],
                            $fila['fech_alt_pel']) ?></td>
 	  <td>
 	  <?php if($fila['activa'] == true ){ ?>
