@@ -21,7 +21,7 @@
       <?= form_label('fecha Alta (dd-mm-yyyy):', 'fech_alt_pel') ?>
       <?= form_input('fech_alt_pel', set_value('fech_alt_pel', $fech_alt_pel)) ?><br/>
       <?= form_submit('editar', 'Editar') ?>
-      <?= anchor('socios/index', 'Volver') ?>
+      <?= anchor('peliculas/index', 'Volver') ?>
     <?= form_close() ?></p>
   </body>
 </html>
