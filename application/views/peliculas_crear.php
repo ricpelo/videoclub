@@ -5,6 +5,7 @@
     <title>Crear una Pelicula</title>
   </head>
     <body>
+    <?= cabecera() ?>
     <div><p><?= validation_errors() ?></p></div>
     <p><?= form_open('peliculas/crear') ?>
       <?= form_label('Codigo:', 'codigo') ?>

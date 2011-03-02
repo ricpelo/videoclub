@@ -1,11 +1,10 @@
 <?php
-define("FPP", 100);
+define("FPP", 3);
 
 class Peliculas extends CI_Controller {
 
   function __construct() {
     parent::__construct();
-    $this->load->helper(array('form', 'url'));
     $this->load->model('Pelicula');
     if (!$this->session->userdata('usuario')) {
       redirect('usuarios/login');

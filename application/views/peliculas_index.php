@@ -6,8 +6,9 @@
   </head>
   <body>
     <?= cabecera() ?>
-
     <p><?= $exito ?></p>
+
+    
     <p><table border="1">
       <thead>
 <th>Código</th><th>Título</th><th>Precio Alquiler</th><th>Fecha Alta<th>Operaciones</th>

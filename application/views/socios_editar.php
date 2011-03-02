@@ -5,11 +5,7 @@
     <title>Editar socio</title>
   </head>
   <body>
-    <?= form_open('usuarios/logout') ?>
-      <p align="right">Usuario: <?= $usuario ?>
-      <?= form_submit('salir', 'Salir') ?>
-      </p>
-    <?= form_close() ?><hr/>
+   <?= cabecera() ?>
     <p><?= validation_errors() ?></p>
     <p><?= form_open('socios/editar') ?>
       <?= form_label('Número:', 'numero') ?>
