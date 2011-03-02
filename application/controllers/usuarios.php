@@ -7,7 +7,6 @@ class Usuarios extends CI_Controller {
   }
   
   function login() {
-    $this->load->helper(array('form', 'url'));
     $data['une'] = false;
     if (!$this->input->post('login')) {   
       $this->load->view('usuarios_login.php', $data);
@@ -29,7 +28,6 @@ class Usuarios extends CI_Controller {
  
     
   function logout() {
-    $this->load->helper('url');
     $this->session->unset_userdata('usuario');
     $this->session->sess_destroy();
     $this->load->view('usuarios_logout');
