@@ -1,5 +1,5 @@
 <?php
-define("FPP", 5);
+define("FPP", 4);
 
 class Peliculas extends CI_Controller {
 
