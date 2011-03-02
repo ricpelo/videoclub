@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>Crear una </title>
+    <title>Crear una Pelicula</title>
   </head>
     <body>
     <div><p><?= validation_errors() ?></p></div>
@@ -14,7 +14,7 @@
       <?= form_label('Precio de Alquiler:', 'precio_alq') ?>
       <?= form_input('precio_alq', set_value('precio_alq')) ?><br/>
       <?= form_submit('crear', 'Crear') ?>
-      <?= anchor('peliculas/index', 'Volver') ?>
+      <?= anchor('socios/index', 'Volver') ?>
     <?= form_close() ?></p>
   </body>
 </html>
