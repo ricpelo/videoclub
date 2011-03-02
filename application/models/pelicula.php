@@ -27,20 +27,18 @@ class Pelicula extends CI_Model {
   }
   
   function borrar_pelicula($cod) {
-    $consulta = $this->db->query("update peliculas									 					set activa = 'false'
+    $consulta = $this->db->query("update peliculas									 					set activa = false
     				where codigo = $cod");
   }
    
   function cambiar_pelicula($cod, $tit, $pre_alq, $fech_alt) {
-    $consulta = $this->db->query("update peliculas
-                                  set titulo = '$tit', precio_alq = '$pre_alq', fech_alt_pel = '$fech_alt'
+    return $this->db->query("update peliculas
+                                  set titulo = '$tit', precio_alq = $pre_alq, fech_alt_pel = '$fech_alt'
                                   where codigo = $cod");
-    return $this->db->affected_rows() == 1;
   }
 
   function crear_pelicula($cod, $tit, $pre_alq) {
-    $consulta = $this->db->query("insert into peliculas(codigo, titulo, precio_alq)values($cod,'$tit','$pre_alq')");
-    return $this->db->affected_rows() == 1;
+    return $this->db->query("insert into peliculas(codigo, titulo, precio_alq)values($cod,'$tit',$pre_alq)");
   }
 
   function numero_peliculas() {
