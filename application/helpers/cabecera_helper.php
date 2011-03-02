@@ -10,6 +10,7 @@ if ( ! function_exists('cabecera'))
 {
 	function cabecera()
 	{
-		return "<h3>". anchor('socios/index/', 'Socios //') . " " . anchor('peliculas/index/', 'Peliculas //') . " " . anchor('alquileres/index/', 'Alquileres') . " " . form_open('usuarios/logout') . "<p align=\"right\">Usuario:" . $usuario . form_submit('salir', 'Salir') . "</p>" . form_close() . "</h3>";
+	  $CI =& get_instance();
+		return "<h3>". anchor('socios/index/', 'Socios //') . " " . anchor('peliculas/index/', 'Peliculas //') . " " . anchor('alquileres/index/', 'Alquileres') . " " . form_open('usuarios/logout') . '<p align="right">Usuario: ' . $CI->session->userdata('usuario') . " ". form_submit('salir', 'Salir') . "</p>" . form_close() . "</h3><hr/>";
 	}
 }

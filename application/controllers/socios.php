@@ -13,7 +13,7 @@ class Socios extends CI_Controller {
       redirect('usuarios/login');
     }
   }
-
+  
   private function crear_enlaces($pag, $npags) {
     $enlaces = '';
 
