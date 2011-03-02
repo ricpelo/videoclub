@@ -1,7 +1,5 @@
 <?php
 
-/* Controlador de Usuarios del programa */
-//CUÑAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO BY RAFA
 class Usuarios extends CI_Controller {
 
   function __construct() {
@@ -24,7 +22,7 @@ class Usuarios extends CI_Controller {
         $this->load->view('usuarios_login.php', $data);
       } else {
         $this->session->set_userdata('usuario', $nombre);
-        redirect('socios/index');
+	$this->load->view("principal.php");
       }
     }
   }

@@ -6,7 +6,7 @@ class Peliculas extends CI_Controller {
   function __construct() {
     parent::__construct();
     $this->load->helper(array('form', 'url'));
-    $this->load->model('Socio');
+    $this->load->model('Pelicula');
     if (!$this->session->userdata('usuario')) {
       redirect('usuarios/login');
     }
@@ -37,12 +37,13 @@ class Peliculas extends CI_Controller {
   }
     
   function index($pag = 1) {
+//No funciona la llamada numero_peliculas();
     $nfilas = $this->Pelicula->numero_peliculas();
     $npags = ceil($nfilas / FPP);
     if ($pag > $npags) {
       redirect('peliculas/index');
     }
-    $data['filas']   = $this->Pelicula->obtener_todos(FPP, ($pag - 1) * FPP);
+    $data['filas']   = $this->Pelicula->obtener_todas(FPP, ($pag - 1) * FPP);
     $data['exito']   = $this->session->flashdata('exito');
     $data['usuario'] = $this->session->userdata('usuario');
     $data['enlaces'] = $this->crear_enlaces($pag, $npags);
@@ -118,6 +119,19 @@ class Peliculas extends CI_Controller {
     } else {
       return TRUE;
     }
+  }
+
+  function borrar($codigo) {
+   //pregunta si esta declarada la variable borrar
+    if (!$this->input->post('borrar')) {
+	$data['codigo'] = $codigo;
+      $this->load->view('peliculas_borrar', $data);
+    } else {
+        $codigo = $this->input->post('codigo');
+        $this->Pelicula->borrar_pelicula($codigo);
+        $this->session->set_flashdata('exito', 'Pelicula borrada con éxito');
+        redirect('peliculas/index');
+      }
   }
 }
 ?>
