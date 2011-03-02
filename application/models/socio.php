@@ -27,16 +27,14 @@ class Socio extends CI_Model {
   }
    
   function cambiar_socio($num, $nom, $ape) {
-    $consulta = $this->db->query("update socios
-                                  set nombre = '$nom', apellidos = '$ape'
-                                  where numero = $num");
-    return $consulta->affected_rows() == 1;
+    return $this->db->query("update socios
+                             set nombre = '$nom', apellidos = '$ape'
+                             where numero = $num");
   }
   
   function crear_socio($num, $nom, $ape) {
-    $consulta = $this->db->query("insert into socios (numero, nombre, apellidos)
-                                  values ($num, '$nom', '$ape')");
-    return $consulta->affected_rows() == 1;
+    return $this->db->query("insert into socios (numero, nombre, apellidos)
+                             values ($num, '$nom', '$ape')");
   }
   
   function numero_socios() {

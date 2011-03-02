@@ -5,11 +5,7 @@
     <title>Editar peliculas</title>
   </head>
   <body>
-    <?= form_open('usuarios/logout') ?>
-      <p align="right">Usuario: <?= $usuario ?>
-      <?= form_submit('salir', 'Salir') ?>
-      </p>
-    <?= form_close() ?><hr/>
+    <?= cabecera() ?>
     <p><?= validation_errors() ?></p>
     <p><?= form_open('peliculas/editar') ?>
       <?= form_label('Código:', 'codigo') ?>

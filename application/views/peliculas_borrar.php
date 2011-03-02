@@ -5,6 +5,7 @@
     <title>Crear una </title>
   </head>
     <body>
+    <?= cabecera() ?>
     <div><p><?= validation_errors() ?></p></div>
     <p><?= form_open('peliculas/borrar') ?>
       <?= form_label('¿Desea borrar la película','codigo') ?>
