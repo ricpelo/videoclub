@@ -10,6 +10,6 @@ if ( ! function_exists('cabecera'))
 {
 	function cabecera()
 	{
-		return "<h1>". anchor('socios/index/', 'Socios //') . " " . anchor('peliculas/index/', 'Peliculas //') . " " . anchor('alquileres/index/', 'Alquileres') . "</h>";
+		return "<h3>". anchor('socios/index/', 'Socios //') . " " . anchor('peliculas/index/', 'Peliculas //') . " " . anchor('alquileres/index/', 'Alquileres') . "</h3>";
 	}
 }
