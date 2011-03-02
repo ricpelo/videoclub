@@ -32,7 +32,24 @@ class Usuarios extends CI_Controller {
     $this->session->sess_destroy();
     $this->load->view('usuarios_logout');
   }
-
+  function crear() {
+  	$this->load->library('form_validation');
+  	$this->form_validation->set_rules('nombre', 'Nombre', 'trim|required');
+  	$this->form_validation->set_rules('contraseña', 'Contraseña', 'trim|required');
+    if (!$this->input->post('crear')) {
+      $this->load->view('usuarios_crear');
+    } else {
+      if ($this->form_validation->run() == TRUE) {
+        $nombre = $this->input->post('nombre');
+        $pass = $this->input->post('password');
+        $this->usuario->crear_usuario($nombre,$pass);
+        $this->session->set_flashdata('exito', 'Usuario creado con éxito');
+        redirect('principales/index');
+      } else {
+        $this->load->view('usuarios_crear');
+     }
+    }
+  }
   
 }
 ?>
