@@ -5,10 +5,20 @@
     <title>Menú principal</title>
   </head>
   <body>
-      
-              <p><?= anchor('socios/index/','Ir a gestión de socio') ?></td> <p/>
- 	      <p><?= anchor('peliculas/index/','Ir a gestión de peliculas') ?></td> <p/>
+	 <?= form_open('usuarios/logout') ?>
+        <p align="right">Usuario: <?= $usuario ?>
+        <?= form_submit('salir', 'Salir') ?>
+        </p>
+        <?= form_close() ?><hr/>
+
+   
+	 <p align="center"><h2>Gestión Videoclub</h2></p><br>
+         <p align="center"><?= anchor('socios/index/','Ir a gestión de socio') ?></td> <p/>
+ 	 <p align="center"><?= anchor('peliculas/index/','Ir a gestión de peliculas') ?></td> <p/>
 	
+
+      
+            
            
   </body>
 </html>

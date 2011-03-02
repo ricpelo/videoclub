@@ -22,10 +22,11 @@ class Usuarios extends CI_Controller {
         $this->load->view('usuarios_login.php', $data);
       } else {
         $this->session->set_userdata('usuario', $nombre);
-	$this->load->view("principal.php");
+	redirect('principales/index');
       }
     }
   }
+ 
     
   function logout() {
     $this->load->helper('url');
