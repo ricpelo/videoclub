@@ -46,7 +46,7 @@ class Socio extends CI_Model {
   }
   
   function borrar_socio($num) {
-    // delete ...
+    return $this->db->query("delete from socios where numero = $num");
   }
 }
 ?>

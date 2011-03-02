@@ -6,11 +6,7 @@
   </head>
   <body>
 	<?= cabecera() ?>
- <?= form_open('usuarios/logout') ?>
-        <p align="right">Usuario: <?= $usuario ?>
-        <?= form_submit('salir', 'Salir') ?>
-        </p>
-      <?= form_close() ?><hr/>
+ 	
       <p>
       <?= form_open('usuarios/logout') ?>
         <p align="right">Usuario: <?= $usuario ?>

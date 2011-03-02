@@ -116,5 +116,17 @@ class Socios extends CI_Controller {
       return TRUE;
     }
   }
+  function borrar($numero) {
+   //pregunta si esta declarada la variable borrar
+    if (!$this->input->post('borrar')) {
+	$data['numero'] = $numero;
+      $this->load->view('socios_borrar', $data);
+    } else {
+        $numero = $this->input->post('numero');
+        $this->Socio->borrar_socio($numero);
+        $this->session->set_flashdata('exito', 'Socio borrado con éxito');
+        redirect('socios/index');
+      }
+  }
 }
 ?>
