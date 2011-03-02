@@ -6,19 +6,19 @@ class Pelicula extends CI_Model {
   }
 
   function obtener_todas() {
-    $consulta = $this->db->query("select * from peliculas");
+    $consulta = $this->db->query("select * from peliculas order by codigo");
     return ($consulta->num_rows() > 0) ? $consulta->result_array() : false;
   }
   
   function obtener_pelicula($cod) {
     $consulta = $this->db->query("select * from peliculas
-                                  where codigo = $cod");
+                                  where codigo = $cod order by codigo");
     return ($consulta->num_rows() > 0) ? $consulta->row_array() : false;
   }
   
   function esta_disponible($cod) {
     $consulta = $this->db->query("select * from disponibles_y_activas
-                                  where codigo = $cod");
+                                  where codigo = $cod order by codigo");
     return $consulta->num_rows() == 1;
   }
   
@@ -27,7 +27,7 @@ class Pelicula extends CI_Model {
   }
   
   function borrar_pelicula($cod) {
-    $consulta = $this->db->query("update peliculas									 					set activa = false
+    $consulta = $this->db->query("update peliculas									 					set activa = not activa
     				where codigo = $cod");
   }
    

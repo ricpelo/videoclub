@@ -37,7 +37,6 @@ class Peliculas extends CI_Controller {
   }
     
   function index($pag = 1) {
-//No funciona la llamada numero_peliculas();
     $nfilas = $this->Pelicula->numero_peliculas();
     $npags = ceil($nfilas / FPP);
     if ($pag > $npags) {
@@ -122,16 +121,9 @@ class Peliculas extends CI_Controller {
   }
 
   function borrar($codigo) {
-   //pregunta si esta declarada la variable borrar
-    if (!$this->input->post('borrar')) {
-	$data['codigo'] = $codigo;
-      $this->load->view('peliculas_borrar', $data);
-    } else {
-        $codigo = $this->input->post('codigo');
         $this->Pelicula->borrar_pelicula($codigo);
-        $this->session->set_flashdata('exito', 'Pelicula borrada con éxito');
         redirect('peliculas/index');
-      }
+
   }
 }
 ?>
