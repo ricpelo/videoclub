@@ -5,12 +5,7 @@
     <title>Listado de peliculas Activas</title>
   </head>
   <body>
-      <?= form_open('usuarios/logout') ?>
-        <p align="right">Usuario: <?= $usuario ?>
-        <?= form_submit('salir', 'Salir') ?>
-        </p>
-      <?= form_close() ?><hr/>
-
+     <?= cabecera() ?>
     <p><?= $exito ?></p>
     <p><table border="1">
       <thead>
