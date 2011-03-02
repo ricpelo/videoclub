@@ -8,6 +8,7 @@
     <p>Ha salido usted de la sesión</p>
  
     <?= anchor('usuarios/login', 'Autenticarse de nuevo') ?>
+	<p>Davinia huelee!!!!</p>
     <!--Esto no ha sido escrito por souto-->
   </body>
 </html>
