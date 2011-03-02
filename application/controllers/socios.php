@@ -1,5 +1,5 @@
 <?php
-/* Hola Muchachos!*/
+
 define("FPP", 100);
 
 class Socios extends CI_Controller {
