@@ -5,10 +5,25 @@ class Pelicula extends CI_Model {
     parent::__construct();
   }
 
-  function obtener_todas() {
-    $consulta = $this->db->query("select * from peliculas order by codigo");
+  function obtener_todas($limit = '', $offset = 0) {
+     if (($limit == '' || $limit >= 0) && $offset >= 0) {
+      if (is_numeric($limit)) {
+        $limit = "limit $limit";
+      }	
+      $consulta = $this->db->query("select * 
+				    from peliculas
+				    order by codigo
+				    $limit
+                                    offset $offset");
     return ($consulta->num_rows() > 0) ? $consulta->result_array() : false;
+	 
+    } else {
+      return false;
+    }
   }
+
+   
+  
   
   function obtener_pelicula($cod) {
     $consulta = $this->db->query("select * from peliculas

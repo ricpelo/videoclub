@@ -9,7 +9,7 @@
     <p><?= $exito ?></p>
     <p><table border="1">
       <thead>
-        <th>Número</th><th>Nombre</th><th>Apellidos</th>
+        <th>Número</th><th>Nombre</th><th>Apellidos</th><th colspan="2">Operaciones</th>
       </thead>
       <tbody>
         <?php foreach ($filas as $fila): ?>
@@ -20,11 +20,13 @@
                            $fila['nombre']) ?></td>
             <td><?= anchor('socios/editar/' . $fila['numero'],
                            $fila['apellidos']) ?></td>
+	  <td><?= anchor('socios/borrar/' . $fila['numero'], 'Borrar') ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
     </table></p>
     <p><?= $enlaces ?></p>
+    <p><?= anchor('socios/crear/', 'Añadir socio') ?></p>
   </body>
 </html>
 
