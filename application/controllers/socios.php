@@ -5,9 +5,9 @@ define("FPP", 100);
 class Socios extends CI_Controller {
 
   function __construct() {
-	//hola leandro ha escrito esto.
     parent::__construct();
     $this->load->helper(array('form', 'url'));
+
     $this->load->model('Socio');
     if (!$this->session->userdata('usuario')) {
       redirect('usuarios/login');

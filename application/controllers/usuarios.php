@@ -1,7 +1,5 @@
 <?php
 
-/* Controlador de Usuarios del programa */
-//CUÑAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO BY RAFA
 class Usuarios extends CI_Controller {
 
   function __construct() {
