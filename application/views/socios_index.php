@@ -26,6 +26,7 @@
       </tbody>
     </table></p>
     <p><?= $enlaces ?></p>
+    <p><?= anchor('socios/crear/', 'Añadir socio') ?></p>
   </body>
 </html>
 
