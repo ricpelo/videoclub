@@ -120,5 +120,18 @@ class Peliculas extends CI_Controller {
       return TRUE;
     }
   }
+
+  function borrar($codigo) {
+   //pregunta si esta declarada la variable borrar
+    if (!$this->input->post('borrar')) {
+	$data['codigo'] = $codigo;
+      $this->load->view('peliculas_borrar', $data);
+    } else {
+        $codigo = $this->input->post('codigo');
+        $this->Pelicula->borrar_pelicula($codigo);
+        $this->session->set_flashdata('exito', 'Pelicula borrada con éxito');
+        redirect('peliculas/index');
+      }
+  }
 }
 ?>

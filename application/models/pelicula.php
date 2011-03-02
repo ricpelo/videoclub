@@ -38,6 +38,11 @@ class Pelicula extends CI_Model {
     return $this->db->affected_rows() == 1;
   }
 
+  function crear_pelicula($cod, $tit, $pre_alq) {
+    $consulta = $this->db->query("insert into peliculas(codigo, titulo, precio_alq)values($cod,'$tit','$pre_alq')");
+    return $this->db->affected_rows() == 1;
+  }
+
   function numero_peliculas() {
     $consulta = $this->db->query("select count(*) as cantidad from peliculas");
     $cantidad = $consulta->row_array();

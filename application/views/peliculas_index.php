@@ -10,10 +10,11 @@
         <?= form_submit('salir', 'Salir') ?>
         </p>
       <?= form_close() ?><hr/>
+
     <p><?= $exito ?></p>
     <p><table border="1">
       <thead>
-        <th>Código</th><th>Título</th>><th>Precio Alquiler</th><th>Fecha Alta</th><th>¿Activa?</th>
+<th>Código</th><th>Título</th><th>Precio Alquiler</th><th>Fecha Alta<th colspan="2">Operaciones</th>
       </thead>
       <tbody>
         <?php foreach ($filas as $fila): ?>
@@ -35,11 +36,13 @@
                            'No disponible') ?>
 	  <?php } ?>
 	  </td>
+	  <td><?= anchor('peliculas/borrar/' . $fila['codigo'], 'Borrar') ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
     </table></p>
     <p><?= $enlaces ?></p>
+    <p><?= anchor('peliculas/crear/', 'Añadir película') ?></p>
   </body>
 </html>
 
