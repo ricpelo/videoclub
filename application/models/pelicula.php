@@ -35,7 +35,7 @@ class Pelicula extends CI_Model {
     $consulta = $this->db->query("update peliculas
                                   set titulo = '$tit', precio_alq = '$pre_alq', fech_alt_pel = '$fech_alt'
                                   where codigo = $cod");
-    return $consulta->affected_rows() == 1;
+    return $this->db->affected_rows() == 1;
   }
 
   function numero_peliculas() {
