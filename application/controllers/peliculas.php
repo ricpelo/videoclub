@@ -55,7 +55,7 @@ class Peliculas extends CI_Controller {
     $data['usuario'] = $this->session->userdata('usuario');
   	$this->load->library('form_validation');
   	$this->form_validation->set_rules('codigo', 'Codigo',
-  	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
+  	                        'trim|required|is_natural_no_zero');
   	$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required');
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
 	
@@ -111,10 +111,10 @@ class Peliculas extends CI_Controller {
     }
   }
   
-  function numero_unico($num) {
-    $consulta = $this->Pelicula->obtener_pelicula($num);
-    if (!$consulta) {
-      $this->form_validation->set_message('numero_unico', 'El campo %s debe ser único');
+  function codigo_unico($cod) {
+    $consulta = $this->Pelicula->obtener_pelicula($cod);
+    if ($consulta) {
+      $this->form_validation->set_message('codigo_unico', 'El campo %s debe ser único');
       return FALSE;
     } else {
       return TRUE;
