@@ -11,6 +11,6 @@ if ( ! function_exists('cabecera'))
 	function cabecera()
 	{
 	  $CI =& get_instance();
-		return "<h3>" anchor('principal/index', 'Menu Principal //') . " " . anchor('socios/index/', 'Socios //') . " " . anchor('peliculas/index/', 'Peliculas //') . " " . anchor('alquileres/index/', 'Alquileres') . " " . form_open('usuarios/logout') . '<p align="right">Usuario: ' . $CI->session->userdata('usuario') . " ". form_submit('salir', 'Salir') . "</p>" . form_close() . "</h3><hr/>";
+		return "<h3>" . anchor('principal/index', 'Menu Principal //') . " " . anchor('socios/index/', 'Socios //') . " " . anchor('peliculas/index/', 'Peliculas //') . " " . anchor('alquileres/index/', 'Alquileres') . " " . form_open('usuarios/logout') . '<p align="right">Usuario: ' . $CI->session->userdata('usuario') . " ". form_submit('salir', 'Salir') . "</p>" . form_close() . "</h3><hr/>";
 	}
 }
