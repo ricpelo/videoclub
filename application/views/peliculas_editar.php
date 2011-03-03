@@ -2,11 +2,19 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<<<<<<< HEAD
     <title>Editar pelicula</title>
   </head>
   <body>
     <?= form_open('usuarios/logout') ?>
       <p align="right">Pelicula: <?= $pelicula ?>
+=======
+    <title>Editar peliculas</title>
+  </head>
+  <body>
+    <?= form_open('usuarios/logout') ?>
+      <p align="right">Usuario: <?= $usuario ?>
+>>>>>>> 9deb71cd35c2218b92bf97664538230a7692898e
       <?= form_submit('salir', 'Salir') ?>
       </p>
     <?= form_close() ?><hr/>
@@ -16,6 +24,7 @@
       <?= form_input('codigo', set_value('codigo', $codigo), 'readonly') ?><br/>
       <?= form_label('Titulo:', 'titulo') ?>
       <?= form_input('titulo', set_value('titulo', $titulo)) ?><br/>
+<<<<<<< HEAD
       <?= form_label('Precio de alquiler:', 'precio_alq') ?>
       <?= form_input('precio_alq', set_value('precio_alq', $precio_alquiler)) ?><br/>
       <?= form_label('Fecha de alta:', 'fech_alt_pel') ?>
@@ -31,3 +40,14 @@
   </body>
 </html>
 
+=======
+      <?= form_label('Precio Alq:', 'precio_alq') ?>
+      <?= form_input('precio_alq', set_value('precio_alq', $precio_alq)) ?><br/>
+      <?= form_label('fecha Alta (dd-mm-yyyy):', 'fech_alt_pel') ?>
+      <?= form_input('fech_alt_pel', set_value('fech_alt_pel', $fech_alt_pel)) ?><br/>
+      <?= form_submit('editar', 'Editar') ?>
+      <?= anchor('peliculas/index', 'Volver') ?>
+    <?= form_close() ?></p>
+  </body>
+</html>
+>>>>>>> 9deb71cd35c2218b92bf97664538230a7692898e

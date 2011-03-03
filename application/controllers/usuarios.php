@@ -22,7 +22,7 @@ class Usuarios extends CI_Controller {
         $this->load->view('usuarios_login.php', $data);
       } else {
         $this->session->set_userdata('usuario', $nombre);
-        redirect('socios/index');
+	$this->load->view("principal.php");
       }
     }
   }
