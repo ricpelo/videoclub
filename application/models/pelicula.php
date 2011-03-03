@@ -18,7 +18,7 @@ class Pelicula extends CI_Model {
       $where = ($campo != '') ? "and $campo like '$filtro'" : '';
       $consulta = $this->db->query("select * 
                         				    from peliculas
-                        				    where activa = '$activa' $where
+                        				    where $activa $where
                         				    order by codigo
                         				    $limit
                                     offset $offset");
