@@ -46,7 +46,7 @@ class Peliculas extends CI_Controller {
     $data['usuario'] = $this->session->userdata('usuario');
     $data['enlaces'] = $this->crear_enlaces($pag, $npags);
 
-    $this->load->view('peliculas_index', $data);
+    $this->template->load('template', 'peliculas_index', $data);
   }
   
   function editar($num = null) {
@@ -60,10 +60,10 @@ class Peliculas extends CI_Controller {
     if (!$this->input->post('editar')) {
       $consulta = $this->Pelicula->obtener_pelicula($num);
       if (!$consulta) {
-        $this->load->view('peliculas_editar_error');
+        $this->template->load('template', 'peliculas_editar_error');
       } else {
         $data = array_merge($data, $consulta);
-      	$this->load->view('peliculas_editar', $data);
+      	$this->template->load('template', 'peliculas_editar', $data);
       }
     } else {
       $codigo = $this->input->post('codigo');
@@ -81,7 +81,7 @@ class Peliculas extends CI_Controller {
 	$data['precio_alq'] = $precio_alq;
 	$data['fech_alt_pel'] = $fech_alt_pel;
 	$data['activa'] = $activa;
-        $this->load->view('peliculas_editar', $data);
+        $this->template->load('template', 'peliculas_editar', $data);
       }
     }
   }
@@ -94,7 +94,7 @@ class Peliculas extends CI_Controller {
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
   	
     if (!$this->input->post('crear')) {
-      $this->load->view('peliculas_crear');
+      $this->template->load('template', 'peliculas_crear');
     } else {
       if ($this->form_validation->run() == TRUE) {
         $codigo = $this->input->post('codigo');
@@ -104,7 +104,7 @@ class Peliculas extends CI_Controller {
         $this->session->set_flashdata('exito', 'Pelicula creada con éxito');
         redirect('peliculas/index');
       } else {
-        $this->load->view('peliculas_crear');
+        $this->template->load('template', 'peliculas_crear');
       }
     }
   }
