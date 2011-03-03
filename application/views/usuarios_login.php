@@ -12,7 +12,10 @@
       <?= form_label('Contraseña:', 'password') ?>
       <?= form_password('password') ?><br/>
       <?= form_submit('login', 'Login') ?>
-    <?= form_close() ?></p>
+    <?= form_close() ?>
+    <?= form_open('usuarios/crear') ?>
+    <?= form_submit('crear', 'Registrarse') ?>
+    <?= form_close() ?></p
   </body>
 </html>
 
