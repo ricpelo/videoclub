@@ -5,7 +5,7 @@
     <title>Crear nuevo usuario</title>
   </head>
   <body>
-    <p></p>
+    <p><?= $une ?></p>
     <p><?= form_open('usuarios/crear') ?>
       <?= form_label('Nombre:', 'nombre') ?>
       <?= form_input('nombre', set_value('nombre')) ?><br/>
