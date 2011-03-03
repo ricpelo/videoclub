@@ -10,9 +10,7 @@ class Pelicula extends CI_Model {
       if (is_numeric($limit)) {
         $limit = "limit $limit";
       }
-      if ($campo != '') {
-        $where = "$campo like '$filtro'";
-      }
+      $where = ($campo != '') ? "$campo like '$filtro'" : '';
       $consulta = $this->db->query("select * 
                         				    from peliculas
                         				    where activa = $activa and $where
