@@ -2,11 +2,17 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>Crear una Pelicula</title>
+    <title>Alta Películas</title>
+  <link href="../estilos/videoclub.css" rel="stylesheet" type="text/css">
   </head>
     <body>
-    <?= cabecera() ?>
-    <div><p><?= validation_errors() ?></p></div>
+   <div id="principal">
+	<div id="cabecera">
+	  <h1>Gestión de Videoclub</h1>
+	  <?= cabecera() ?>
+	</div>
+    <div id="validaciones"><p><?= validation_errors() ?></p></div>
+     <div id="contenido">
     <p><?= form_open('peliculas/crear') ?>
       <?= form_label('Codigo:', 'codigo') ?>
       <?= form_input('codigo', set_value('codigo')) ?><br/>
@@ -17,5 +23,8 @@
       <?= form_submit('crear', 'Crear') ?>
       <?= anchor('socios/index', 'Volver') ?>
     <?= form_close() ?></p>
+    </div>
+     <div id="pie_pag">&copy; Alumnos de 2º DAI, IES Doñana, 2011</div>
+    </div>
   </body>
 </html>

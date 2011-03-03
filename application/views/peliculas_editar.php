@@ -3,10 +3,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>Editar peliculas</title>
+  <link href="../estilos/videoclub.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <?= cabecera() ?>
-    <p><?= validation_errors() ?></p>
+  <div id="principal">
+	<div id="cabecera">
+	  <h1>Gestión de Videoclub</h1>
+	  <?= cabecera() ?>
+	</div>
+    <div id="validaciones"><p><?= validation_errors() ?></p></div>
+    <div id="contenido">
     <p><?= form_open('peliculas/editar') ?>
       <?= form_label('Código:', 'codigo') ?>
       <?= form_input('codigo', set_value('codigo', $codigo), 'readonly') ?><br/>
@@ -19,5 +25,8 @@
       <?= form_submit('editar', 'Editar') ?>
       <?= anchor('peliculas/index', 'Volver') ?>
     <?= form_close() ?></p>
+     </div>
+    <div id="pie_pag">&copy; Alumnos de 2º DAI, IES Doñana, 2011</div>
+  </div> 
   </body>
 </html>
