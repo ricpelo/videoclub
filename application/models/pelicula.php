@@ -10,10 +10,10 @@ class Pelicula extends CI_Model {
       if (is_numeric($limit)) {
         $limit = "limit $limit";
       }
-      $where = ($campo != '') ? "$campo like '$filtro'" : '';
+      $where = ($campo != '') ? "and $campo like '$filtro'" : '';
       $consulta = $this->db->query("select * 
                         				    from peliculas
-                        				    where activa = '$activa' and $where
+                        				    where activa = '$activa' $where
                         				    order by codigo
                         				    $limit
                                     offset $offset");
