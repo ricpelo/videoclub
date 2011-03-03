@@ -8,7 +8,17 @@
     <?= cabecera() ?>
     <p><?= $exito ?></p>
 
-    
+    <p><?= form_open('peliculas/index') ?>
+      <?= form_fieldset('Filtrar')?>
+      <?= form_radio(array("name"=>"filtrar","value"=>"a" ,"checked" => "true")) ?> Activas
+      <?= form_radio(array("name"=>"filtrar", "value"=>"n" ,"checked" => "false")) ?> No activas
+      <?= form_radio(array("name"=>"filtrar","value"=>"t" ,"checked" => "false")) ?> Todas<br/>
+      Buscar:
+      <?= form_dropdown('campo', array('codigo' => 'Código', 'titulo' => 'Título', 'precio_alq' => 'Precio de alquiler'), 'codigo') ?>
+      <?= form_input('filtro') ?>
+      <?= form_submit('filtrar', 'Filtrar') ?>
+      <?= form_fieldset_close() ?>
+    <?= form_close() ?></p>
     <p><table border="1">
       <thead>
 <th>Código</th><th>Título</th><th>Precio Alquiler</th><th>Fecha Alta<th>Operaciones</th>
