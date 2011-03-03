@@ -37,18 +37,18 @@ values (3, 'Avatar', 3, current_date - 1);
 drop table alquileres cascade;
 
 create table alquileres (
-  id_alquiler constraint pk_alquileres primary key,
+  id_alquiler bigserial constraint pk_alquileres primary key,
   id_socio bigint constraint fk_alquileres_socios references socios (id_socio)
                   on delete no action on update cascade,
   id_pelicula bigint constraint fk_alquileres_peliculas references peliculas (id_pelicula)
                      on delete no action on update cascade,
   falq   date,
-  fdev   date,
+  fdev   date
 ) without oids;
 
-insert into alquileres (numero, codigo, falq, fdev)
+insert into alquileres (id_socio, id_pelicula, falq, fdev)
 values (1, 1, current_date, null);
-insert into alquileres (numero, codigo, falq, fdev)
+insert into alquileres (id_socio, id_pelicula, falq, fdev)
 values (2, 3, current_date - 1, current_date);
 
 drop table ci_sessions cascade;
@@ -77,7 +77,7 @@ drop view disponibles cascade;
 create view disponibles as
 SELECT peliculas.codigo
    FROM peliculas
-  WHERE NOT (peliculas.codigo IN (SELECT alquileres.codigo
+  WHERE NOT (peliculas.id_pelicula IN (SELECT alquileres.id_pelicula
            FROM alquileres
           WHERE alquileres.fdev IS NULL));
 
@@ -86,7 +86,7 @@ drop view disponibles_y_activas cascade;
 create view disponibles_y_activas as
 SELECT peliculas.codigo
    FROM peliculas
-  WHERE NOT (peliculas.codigo IN ( SELECT alquileres.codigo
+  WHERE NOT (peliculas.id_pelicula IN ( SELECT alquileres.id_pelicula
            FROM alquileres
           WHERE alquileres.fdev IS NULL)) AND peliculas.activa = true;
 

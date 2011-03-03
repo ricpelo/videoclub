@@ -5,13 +5,22 @@
     <title>Gestión de alquileres - Alquileres de <?= $nombre." ".$apellido ?></title>
   </head>
   <body>
-  <?= cabecera() ?>
+      <div id="principal">
+	<div id="cabecera">
+	  <h1>Gestión de Videoclub</h1>
+	  <?= cabecera() ?>
+	</div>
+    <div id="contenido">
   <p><?= validation_errors() ?></p>
+  <?= form_open('alquileres/seleccionar_socio') ?>
+  <?= form_label('Número:', 'numero') ?>
+  <?= form_input('numero', set_value('numero')) ?><br/>
+  <?= form_submit('buscar', 'Buscar socio') ?>
+  <?= form_close() ?>
   <p><fieldset><legend>Datos del socio</legend>
   <?= $numero ?><br/>
-  <?= $nombre." ".$apellido ?><br/>
+  <?= $nombre." ".$apellidos ?><br/>
   <?= $direccion ?><br/>
-  <?= $poblacion."(".$provincia.")" ?><br/>
   <?= $telefono ?></fieldset></p>
   <?php if (isset($filas)): ?>
   <div style="margin: 30px">
@@ -23,12 +32,12 @@
                 <tbody>
                 <?php foreach ($filas as $fila): ?>
                 <tr>
-                  <td><?= $codigo ?></td>
-                  <td><?= $titulo ?></td>
-                  <td><?= $falq ?></td>
+                  <td><?= $fila['codigo'] ?></td>
+                  <td><?= $fila['titulo'] ?></td>
+                  <td><?= $fila['falq'] ?></td>
                   <td>
                   <?= form_open('alquileres/devolver') ?>
-                  <?= form_hidden('id_alquiler', $id_alquiler) ?>
+                  <?= form_hidden('id_alquiler', $fila['id_alquiler']) ?>
                   <?= form_submit('devolver', 'Devolver') ?>
                   <?= form_close() ?>
                   </td>
@@ -39,24 +48,27 @@
   </div>
   <?php endif; ?>
   <?= form_open('alquileres/solicitar') ?>
-  <?= form_label('Codigo:', 'codigo') ?>
+  <?= form_label('Codigo:', 'cod') ?>
   <?= form_input('codigo', set_value('codigo')) ?>
   <?= form_submit('buscar', 'Buscar') ?>
   <?= form_close() ?>
   <?php if (isset($pelicula)): ?>
   <div style="margin: 30px">
-    <?= $titulo ?><br/>
-    <?= $precio_alquiler ?><br/>
-    <?= if ($disponible): ?>
+    <?= $pelicula['titulo'] ?><br/>
+    <?= $pelicula['precio_alq'] ?><br/>
+    <?php if ($disponible): ?>
     <?= form_open('alquileres/alquilar') ?>
-    <?= form_hidden('id_pelicula', $id_pelicula)) ?>
+    <?= form_hidden('id_pelicula', $pelicula['id_pelicula']) ?>
     <?= form_submit('alquilar', 'Alquilar') ?>
     <?= form_close() ?>
-    <?= else: ?>
+    <?php else: ?>
     No disponible
-    <?= endif; ?>
+    <?php endif; ?>
   </div>
   <?php endif; ?>
+    </div>    
+    <div id="pie_pag">&copy; Alumnos de 2º DAI, IES Doñana, 2011</div>
+  </div>
   </body>
 </html>
 
