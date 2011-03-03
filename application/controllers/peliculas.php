@@ -1,12 +1,11 @@
 <?php
-define("FPP", 100);
+define("FPP", 5);
 
 class Peliculas extends CI_Controller {
 
   function __construct() {
     parent::__construct();
-    $this->load->helper(array('form', 'url'));
-    $this->load->model('Socio');
+    $this->load->model('Pelicula');
     if (!$this->session->userdata('usuario')) {
       redirect('usuarios/login');
     }
@@ -42,7 +41,7 @@ class Peliculas extends CI_Controller {
     if ($pag > $npags) {
       redirect('peliculas/index');
     }
-    $data['filas']   = $this->Pelicula->obtener_todos(FPP, ($pag - 1) * FPP);
+    $data['filas']   = $this->Pelicula->obtener_todas(FPP, ($pag - 1) * FPP);
     $data['exito']   = $this->session->flashdata('exito');
     $data['usuario'] = $this->session->userdata('usuario');
     $data['enlaces'] = $this->crear_enlaces($pag, $npags);
@@ -54,10 +53,9 @@ class Peliculas extends CI_Controller {
     $data['usuario'] = $this->session->userdata('usuario');
   	$this->load->library('form_validation');
   	$this->form_validation->set_rules('codigo', 'Codigo',
-  	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
+  	                        'trim|required|is_natural_no_zero');
   	$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required');
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
-	$this->form_validation->set_rules('fech_alt_pel', 'Fecha alta', 'trim|required');
 	
     if (!$this->input->post('editar')) {
       $consulta = $this->Pelicula->obtener_pelicula($num);
@@ -94,7 +92,6 @@ class Peliculas extends CI_Controller {
   	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
   	$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required');
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
-	$this->form_validation->set_rules('fech_alt_pel', 'Fecha alta', 'trim|required');
   	
     if (!$this->input->post('crear')) {
       $this->load->view('peliculas_crear');
@@ -112,14 +109,20 @@ class Peliculas extends CI_Controller {
     }
   }
   
-  function numero_unico($num) {
-    $consulta = $this->Pelicula->obtener_pelicula($num);
-    if (!$consulta) {
-      $this->form_validation->set_message('numero_unico', 'El campo %s debe ser único');
+  function codigo_unico($cod) {
+    $consulta = $this->Pelicula->obtener_pelicula($cod);
+    if ($consulta) {
+      $this->form_validation->set_message('codigo_unico', 'El campo %s debe ser único');
       return FALSE;
     } else {
       return TRUE;
     }
+  }
+
+  function borrar($codigo) {
+        $this->Pelicula->borrar_pelicula($codigo);
+        redirect('peliculas/index');
+
   }
 }
 ?>

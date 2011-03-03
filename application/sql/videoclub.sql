@@ -1,7 +1,8 @@
 drop table socios cascade;
 
 create table socios (
-  numero    numeric(6) constraint pk_socios primary key,
+  id_socio  bigserial constraint pk_socios primary key,
+  numero    numeric(6) constraint uq_numero unique,
   nombre    varchar(20) not null,
   apellidos varchar(40),
   direccion varchar(100),
@@ -18,31 +19,31 @@ values (3, 'Néstor', 'Tilla de Patatas', 'C/. Incorrecta 789', 756756756);
 drop table peliculas cascade;
 
 create table peliculas (
-  codigo          numeric(5) constraint pk_peliculas primary key,
+  id_pelicula     bigserial constraint pk_peliculas primary key,
+  codigo          numeric(5) constraint uq_pelicula unique,
   titulo          varchar(30) not null,
-  precio_compra   numeric(5,2),
-  precio_alquiler numeric(4,2),
-  fecha_alta      date,
+  precio_alq      numeric(4,2),
+  fech_alt_pel    date default current_date,
   activa          bool not null default true
 ) without oids;
 
-insert into peliculas (codigo, titulo, precio_compra, precio_alquiler, fecha_alta)
-values (1, 'Ciudadano Kane', 110, 1, current_date - 3);
-insert into peliculas (codigo, titulo, precio_compra, precio_alquiler, fecha_alta)
-values (2, 'Los bingueros', 90, 1.50, current_date - 2);
-insert into peliculas (codigo, titulo, precio_compra, precio_alquiler, fecha_alta)
-values (3, 'Avatar', 180, 3, current_date - 1);
+insert into peliculas (codigo, titulo, precio_alq, fech_alt_pel)
+values (1, 'Ciudadano Kane', 1, current_date - 3);
+insert into peliculas (codigo, titulo, precio_alq, fech_alt_pel)
+values (2, 'Los bingueros', 1.50, current_date - 2);
+insert into peliculas (codigo, titulo, precio_alq, fech_alt_pel)
+values (3, 'Avatar', 3, current_date - 1);
 
 drop table alquileres cascade;
 
 create table alquileres (
-  numero numeric(6) constraint fk_alquileres_socios references socios (numero)
-                    on delete no action on update cascade,
-  codigo numeric(5) constraint fk_alquileres_peliculas references peliculas (codigo)
-                    on delete no action on update cascade,
+  id_alquiler constraint pk_alquileres primary key,
+  id_socio bigint constraint fk_alquileres_socios references socios (id_socio)
+                  on delete no action on update cascade,
+  id_pelicula bigint constraint fk_alquileres_peliculas references peliculas (id_pelicula)
+                     on delete no action on update cascade,
   falq   date,
   fdev   date,
-  constraint pk_alquileres primary key (numero, codigo, falq)
 ) without oids;
 
 insert into alquileres (numero, codigo, falq, fdev)
@@ -68,6 +69,8 @@ create table usuarios (
   nombre_usuario varchar(15) not null constraint uq_nombre_usuario_unico unique,
   password       char(32) not null
 ) without oids;
+
+insert into usuarios(nombre_usuario, password)values('leandro', md5('leandro'));
 
 drop view disponibles cascade;
 

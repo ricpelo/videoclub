@@ -4,21 +4,36 @@ class Pelicula extends CI_Model {
   function __construct() {
     parent::__construct();
   }
-  
-  function obtener_todas() {
-    $consulta = $this->db->query("select * from peliculas");
+
+  function obtener_todas($limit = '', $offset = 0) {
+     if (($limit == '' || $limit >= 0) && $offset >= 0) {
+      if (is_numeric($limit)) {
+        $limit = "limit $limit";
+      }	
+      $consulta = $this->db->query("select * 
+				    from peliculas
+				    order by codigo
+				    $limit
+                                    offset $offset");
     return ($consulta->num_rows() > 0) ? $consulta->result_array() : false;
+	 
+    } else {
+      return false;
+    }
   }
+
+   
+  
   
   function obtener_pelicula($cod) {
     $consulta = $this->db->query("select * from peliculas
-                                  where codigo = $cod");
+                                  where codigo = $cod order by codigo");
     return ($consulta->num_rows() > 0) ? $consulta->row_array() : false;
   }
   
   function esta_disponible($cod) {
     $consulta = $this->db->query("select * from disponibles_y_activas
-                                  where codigo = $cod");
+                                  where codigo = $cod order by codigo");
     return $consulta->num_rows() == 1;
   }
   
@@ -27,16 +42,18 @@ class Pelicula extends CI_Model {
   }
   
   function borrar_pelicula($cod) {
-    $consulta = $this->db->query("update peliculas
-    										 set activa = 'false'
-    										 where codigo = %cod");
+    $consulta = $this->db->query("update peliculas									 					set activa = not activa
+    				where codigo = $cod");
   }
    
-  function cambiar_pelicula($cod, $tit, $pre_alq) {
-    $consulta = $this->db->query("update peliculas
-                                  set titulo = '$tit', precio_alq = '$pre_alq'
+  function cambiar_pelicula($cod, $tit, $pre_alq, $fech_alt) {
+    return $this->db->query("update peliculas
+                                  set titulo = '$tit', precio_alq = $pre_alq, fech_alt_pel = '$fech_alt'
                                   where codigo = $cod");
-    return $consulta->affected_rows() == 1;
+  }
+
+  function crear_pelicula($cod, $tit, $pre_alq) {
+    return $this->db->query("insert into peliculas(codigo, titulo, precio_alq)values($cod,'$tit',$pre_alq)");
   }
 
   function numero_peliculas() {

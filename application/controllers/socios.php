@@ -1,19 +1,17 @@
 <?php
-/* Hola Muchachos!*/
+
 define("FPP", 100);
 
 class Socios extends CI_Controller {
 
   function __construct() {
-	//hola leandro ha escrito esto.
     parent::__construct();
-    $this->load->helper(array('form', 'url'));
     $this->load->model('Socio');
     if (!$this->session->userdata('usuario')) {
       redirect('usuarios/login');
     }
   }
-
+  
   private function crear_enlaces($pag, $npags) {
     $enlaces = '';
 
@@ -115,6 +113,18 @@ class Socios extends CI_Controller {
     } else {
       return TRUE;
     }
+  }
+  function borrar($numero) {
+   //pregunta si esta declarada la variable borrar
+    if (!$this->input->post('borrar')) {
+	$data['numero'] = $numero;
+      $this->load->view('socios_borrar', $data);
+    } else {
+        $numero = $this->input->post('numero');
+        $this->Socio->borrar_socio($numero);
+        $this->session->set_flashdata('exito', 'Socio borrado con éxito');
+        redirect('socios/index');
+      }
   }
 }
 ?>

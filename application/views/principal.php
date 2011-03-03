@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>Crear un nuevo socio</title>
+    <title>Menú principal</title>
   <link href="../estilos/videoclub.css" rel="stylesheet" type="text/css">
   </head>
   <body>
@@ -12,10 +12,10 @@
 	  <?= cabecera() ?>
 	</div>
     <div id="contenido">
-    <h1>¡Bien hecho!</h1>
-     </div>
+	 <p><?= anchor('socios/index/','Ir a gestión de socio') ?></td> <p/>
+ 	 <p><?= anchor('peliculas/index/','Ir a gestión de peliculas') ?></td> <p/>
+    </div>
     <div id="pie_pag">&copy; Alumnos de 2º DAI, IES Doñana, 2011</div>
-  </div>
+  </div>         
   </body>
 </html>
-
