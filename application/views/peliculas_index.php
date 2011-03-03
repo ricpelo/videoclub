@@ -23,7 +23,6 @@
       <?= form_submit('filtrar', 'Filtrar') ?>
       <?= form_fieldset_close() ?>
     <?= form_close() ?></p>
-
     <div id="contenido">
     <p><?= $exito ?></p>
     <p><table border="0">
@@ -58,3 +57,5 @@
     <div id="pie_pag">&copy; Alumnos de 2º DAI, IES Doñana, 2011</div>
   </div>
   </body>
+</html>
+
