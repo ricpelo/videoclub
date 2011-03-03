@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>Listado de películas disponibles</title>
-  <link href="../estilos/videoclub.css" rel="stylesheet" type="text/css">
+  <?= link_tag('estilos/videoclub.css') ?>
   </head>
   <body>
       <div id="principal">
