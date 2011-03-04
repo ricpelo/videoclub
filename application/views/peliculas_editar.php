@@ -2,40 +2,22 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>Editar pelicula</title>
-  </head>
-  <body>
-    <?= form_open('usuarios/logout') ?>
-      <p align="right">Pelicula: <?= $pelicula ?>
-
     <title>Editar peliculas</title>
+  <link href="../estilos/videoclub.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <?= form_open('usuarios/logout') ?>
-      <p align="right">Usuario: <?= $usuario ?>
-      <?= form_submit('salir', 'Salir') ?>
-      </p>
-    <?= form_close() ?><hr/>
-    <p><?= validation_errors() ?></p>
+  <div id="principal">
+	<div id="cabecera">
+	  <h1>Gestión de Videoclub</h1>
+	  <?= cabecera() ?>
+	</div>
+    <div id="validaciones"><p><?= validation_errors() ?></p></div>
+    <div id="contenido">
     <p><?= form_open('peliculas/editar') ?>
       <?= form_label('Código:', 'codigo') ?>
       <?= form_input('codigo', set_value('codigo', $codigo), 'readonly') ?><br/>
       <?= form_label('Titulo:', 'titulo') ?>
       <?= form_input('titulo', set_value('titulo', $titulo)) ?><br/>
-      <?= form_label('Precio de alquiler:', 'precio_alq') ?>
-      <?= form_input('precio_alq', set_value('precio_alq', $precio_alquiler)) ?><br/>
-      <?= form_label('Fecha de alta:', 'fech_alt_pel') ?>
-      <?= form_input('fech_alt_pel', set_value('fech_alt_pel', $fech_alt_pel)) ?><br/>
-      <?= form_label('Activa:', 'activa') ?>
-      <select name="Activa">
-        <option value="TRUE" <?php echo set_select('myselect', 'one', $activa); ?> >Si</option>
-        <option value="FALSE" <?php echo set_select('myselect', 'two', !$activa); ?> >No</option>
-      </select> 
-      <?= form_submit('editar', 'Editar') ?>
-      <?= anchor('socios/index', 'Volver') ?>
-    <?= form_close() ?></p>
-  </body>
-</html>
       <?= form_label('Precio Alq:', 'precio_alq') ?>
       <?= form_input('precio_alq', set_value('precio_alq', $precio_alq)) ?><br/>
       <?= form_label('fecha Alta (dd-mm-yyyy):', 'fech_alt_pel') ?>
@@ -43,5 +25,8 @@
       <?= form_submit('editar', 'Editar') ?>
       <?= anchor('peliculas/index', 'Volver') ?>
     <?= form_close() ?></p>
+     </div>
+    <div id="pie_pag">&copy; Alumnos de 2º DAI, IES Doñana, 2011</div>
+  </div> 
   </body>
 </html>

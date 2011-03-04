@@ -1,11 +1,10 @@
 <?php
-define("FPP", 100);
+define("FPP", 5);
 
 class Peliculas extends CI_Controller {
 
   function __construct() {
     parent::__construct();
-    $this->load->helper(array('form', 'url'));
     $this->load->model('Pelicula');
     if (!$this->session->userdata('usuario')) {
       redirect('usuarios/login');
@@ -37,7 +36,6 @@ class Peliculas extends CI_Controller {
   }
     
   function index($pag = 1) {
-//No funciona la llamada numero_peliculas();
     $nfilas = $this->Pelicula->numero_peliculas();
     $npags = ceil($nfilas / FPP);
     if ($pag > $npags) {
@@ -55,7 +53,7 @@ class Peliculas extends CI_Controller {
     $data['usuario'] = $this->session->userdata('usuario');
   	$this->load->library('form_validation');
   	$this->form_validation->set_rules('codigo', 'Codigo',
-  	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
+  	                        'trim|required|is_natural_no_zero');
   	$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required');
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
 	
@@ -111,14 +109,20 @@ class Peliculas extends CI_Controller {
     }
   }
   
-  function numero_unico($num) {
-    $consulta = $this->Pelicula->obtener_pelicula($num);
-    if (!$consulta) {
-      $this->form_validation->set_message('numero_unico', 'El campo %s debe ser único');
+  function codigo_unico($cod) {
+    $consulta = $this->Pelicula->obtener_pelicula($cod);
+    if ($consulta) {
+      $this->form_validation->set_message('codigo_unico', 'El campo %s debe ser único');
       return FALSE;
     } else {
       return TRUE;
     }
+  }
+
+  function borrar($codigo) {
+        $this->Pelicula->borrar_pelicula($codigo);
+        redirect('peliculas/index');
+
   }
 }
 ?>

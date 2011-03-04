@@ -2,18 +2,20 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>Listado de peliculas Activas</title>
+    <title>Listado de películas disponibles</title>
+  <link href="../estilos/videoclub.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-      <?= form_open('usuarios/logout') ?>
-        <p align="right">Usuario: <?= $usuario ?>
-        <?= form_submit('salir', 'Salir') ?>
-        </p>
-      <?= form_close() ?><hr/>
+      <div id="principal">
+	<div id="cabecera">
+	  <h1>Gestión de Videoclub</h1>
+	  <?= cabecera() ?>
+	</div>
+    <div id="contenido">
     <p><?= $exito ?></p>
-    <p><table border="1">
+    <p><table border="0">
       <thead>
-        <th>Código</th><th>Título</th>><th>Precio Alquiler</th><th>Fecha Alta</th><th>¿Activa?</th>
+<th>Código</th><th>Título</th><th>Precio Alquiler</th><th>Fecha Alta<th>Operaciones</th>
       </thead>
       <tbody>
         <?php foreach ($filas as $fila): ?>
@@ -27,19 +29,21 @@
             <td><?= anchor('peliculas/editar/' . $fila['codigo'],
                            $fila['fech_alt_pel']) ?></td>
 	  <td>
-	  <?php if($fila['activa'] == true ){ ?>
-	  <?= anchor('peliculas/editar/' .  $fila['codigo'],
-                           'Disponible') ?>
+	  <?php if($fila['activa'] == 't'){ ?>
+	  <?= anchor('peliculas/borrar/' .  $fila['codigo'],
+                           'Desactivar') ?>
 	  <?php }else{ ?>
-	  <?= anchor('peliculas/editar/' .  $fila['codigo'],
-                           'No disponible') ?>
+	  <?= anchor('peliculas/borrar/' .  $fila['codigo'],
+                           'Activar') ?>
 	  <?php } ?>
-	  </td>
-          </tr>
         <?php endforeach; ?>
       </tbody>
     </table></p>
     <p><?= $enlaces ?></p>
+    <p><?= anchor('peliculas/crear/', 'Añadir película') ?></p>
+     </div>
+    <div id="pie_pag">&copy; Alumnos de 2º DAI, IES Doñana, 2011</div>
+  </div>
   </body>
 </html>
 

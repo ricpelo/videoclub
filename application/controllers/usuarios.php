@@ -7,7 +7,6 @@ class Usuarios extends CI_Controller {
   }
   
   function login() {
-    $this->load->helper(array('form', 'url'));
     $data['une'] = false;
     if (!$this->input->post('login')) {   
       $this->load->view('usuarios_login.php', $data);
@@ -22,16 +21,35 @@ class Usuarios extends CI_Controller {
         $this->load->view('usuarios_login.php', $data);
       } else {
         $this->session->set_userdata('usuario', $nombre);
-	$this->load->view("principal.php");
+	redirect('principales/index');
       }
     }
   }
+ 
     
   function logout() {
-    $this->load->helper('url');
     $this->session->unset_userdata('usuario');
     $this->session->sess_destroy();
     $this->load->view('usuarios_logout');
   }
+  function crear() {
+  	$this->load->library('form_validation');
+  	$this->form_validation->set_rules('nombre', 'Nombre', 'trim|required');
+  	$this->form_validation->set_rules('contraseña', 'Contraseña', 'trim|required');
+    if (!$this->input->post('crear')) {
+      $this->load->view('usuarios_crear');
+    } else {
+      if ($this->form_validation->run() == TRUE) {
+        $nombre = $this->input->post('nombre');
+        $pass = $this->input->post('password');
+        $this->usuario->crear_usuario($nombre,$pass);
+        $this->session->set_flashdata('exito', 'Usuario creado con éxito');
+        redirect('principales/index');
+      } else {
+        $this->load->view('usuarios_crear');
+     }
+    }
+  }
+  
 }
 ?>
