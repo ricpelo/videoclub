@@ -87,6 +87,7 @@ class Peliculas extends CI_Controller {
   }
  
   function crear() {
+	$data['usuario'] = $this->session->userdata('usuario');
   	$this->load->library('form_validation');
   	$this->form_validation->set_rules('codigo', 'Codigo',
   	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
@@ -94,7 +95,7 @@ class Peliculas extends CI_Controller {
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
   	
     if (!$this->input->post('crear')) {
-      $this->template->load('template', 'peliculas_crear');
+      $this->template->load('template', 'peliculas_crear', $data);
     } else {
       if ($this->form_validation->run() == TRUE) {
         $codigo = $this->input->post('codigo');
@@ -104,7 +105,7 @@ class Peliculas extends CI_Controller {
         $this->session->set_flashdata('exito', 'Pelicula creada con éxito');
         redirect('peliculas/index');
       } else {
-        $this->template->load('template', 'peliculas_crear');
+        $this->template->load('template', 'peliculas_crear', $data);
       }
     }
   }
