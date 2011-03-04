@@ -10,7 +10,7 @@ class Usuarios extends CI_Controller {
   function login() {
     $data['une'] = false;
     if (!$this->input->post('login')) {   
-      $this->load->view('usuarios_login.php', $data);
+      $this->template->load('plantilla_login', 'usuarios_login.php', $data);
     } else {
       $nombre = $this->input->post('nombre');
       $password = $this->input->post('password');
@@ -19,7 +19,7 @@ class Usuarios extends CI_Controller {
                                     password = md5('$password')");
       if ($consulta->num_rows() == 0) {
         $data['une'] = 'Usuario no encontrado';
-        $this->load->view('usuarios_login.php', $data);
+        $this->template->load('plantilla_login', 'usuarios_login.php', $data);
       } else {
         $this->session->set_userdata('usuario', $nombre);
 	redirect('principales/index');
@@ -31,7 +31,7 @@ class Usuarios extends CI_Controller {
   function logout() {
     $this->session->unset_userdata('usuario');
     $this->session->sess_destroy();
-    $this->load->view('usuarios_logout');
+    $this->template->load('plantilla_login', 'usuarios_logout');
   }
  function crear() {
  	$data['une'] = false;
@@ -41,7 +41,7 @@ class Usuarios extends CI_Controller {
   	$comprobarNombre = $this->input->post('nombre');
   	$comprobarNombre = $this->nombre_unico($comprobarNombre);
     if (!$this->input->post('crear')) {
-    $this->load->view('usuarios_crear');
+    $this->template->load('plantilla_login', 'usuarios_crear');
     } else {
       if ($this->form_validation->run() == TRUE && $comprobarNombre == 0) {
         $nombre = $this->input->post('nombre');
@@ -53,7 +53,7 @@ class Usuarios extends CI_Controller {
       if ($comprobarNombre == 1){
       	$data['une'] = 'Ya existe un usuario con ese nombre';
       	}
-        $this->load->view('usuarios_crear',$data);
+        $this->template->load('plantilla_login', 'usuarios_crear',$data);
      }
     }
   }
