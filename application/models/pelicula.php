@@ -15,14 +15,15 @@ class Pelicula extends CI_Model {
         case 'n': $activa = 'activa = false'; break;
         case 't': $activa = 'true'; break;
       }
-      $where = ($campo != '') ? "and $campo like '$filtro'" : '';
+
+      $where = ($filtro != '') ? "and $campo::text like '$filtro'" : '';
       $consulta = $this->db->query("select * 
                         				    from peliculas
                         				    where $activa $where
                         				    order by codigo
                         				    $limit
                                     offset $offset");
-    return ($consulta->num_rows() > 0) ? $consulta->result_array() : false;
+     return $consulta->result_array();
 	 
     } else {
       return false;

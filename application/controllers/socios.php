@@ -38,9 +38,10 @@ class Socios extends CI_Controller {
     
   function index($pag = 1) {
     $nfilas = $this->Socio->numero_socios();
-    $npags = ceil($nfilas / FPP);
+    $npags = max(ceil($nfilas / FPP), 1);
+    $pag = max($pag, 1);
     if ($pag > $npags) {
-      redirect('socios/index');
+        redirect('socios/index');
     }
     $data['filas']   = $this->Socio->obtener_todos(FPP, ($pag - 1) * FPP);
     $data['exito']   = $this->session->flashdata('exito');
