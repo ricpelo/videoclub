@@ -15,11 +15,11 @@ body {
 	background-image: url(../imagenes/fondo.jpg);
 	background-repeat: repeat-x;
 }
-#principal .a {
+#principal a {
 	color: #006291;
 	text-decoration: none;
 }
-#principal .a:hover {
+#principal a:hover {
 	color: #900;
 	text-decoration: none;
 }
@@ -45,36 +45,41 @@ td {
 }
 #principal #cabecera {
 	background-color: #006291;
-	height: 90px;
+	height: 100px;
 	padding-top: 20px;
 	padding-right: 20px;
 	padding-bottom: 5px;
 	padding-left: 20px;
 }
+#principal #usuario {
+	float:right;
+  	padding-left: 300px;
+	color: #FFF;
+}
 #principal #cabecera h1 {
 	color: #FFF;
 }
-#principal #cabecera .anchor {
+#principal #cabecera anchor {
 	color: #FFF;
 	text-decoration: none;
 }
-#principal #cabecera .anchor:hover {
+#principal #cabecera anchor:hover {
 	color: #FC0;
 	text-decoration: none;
 }
-#principal #cabecera .anchor:active {
+#principal #cabecera anchor:active {
 	color: #CC0;
 	text-decoration: none;
 }
-#principal #cabecera .a {
+#principal #cabecera a {
 	color: #FFF;
 	text-decoration: none;
 }
-#principal #cabecera .a:hover {
+#principal #cabecera a:hover {
 	color: #FC0;
 	text-decoration: none;
 }
-#principal #cabecera .a:active {
+#principal #cabecera a:active {
 	color: #CC0;
 	text-decoration: none;
 }

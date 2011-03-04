@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "socios";
+$route['default_controller'] = "principales";
 $route['404_override'] = '';
 
 

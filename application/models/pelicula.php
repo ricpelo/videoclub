@@ -17,6 +17,7 @@ class Pelicula extends CI_Model {
       }
 
       $where = ($filtro != '') ? "and $campo::text like '$filtro'" : '';
+      $where = ($campo != '') ? "and $campo::text like '%$filtro%'" : '';
       $consulta = $this->db->query("select * 
                         				    from peliculas
                         				    where $activa $where

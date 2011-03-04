@@ -48,6 +48,9 @@ class Peliculas extends CI_Controller {
     $nfilas = $this->Socio->numero_socios();
     $npags = max(ceil($nfilas / FPP), 1);
     $pag = max($pag, 1);
+    $nfilas = $this->Pelicula->numero_peliculas();
+    $npags = ceil($nfilas / FPP);
+
     if ($pag > $npags) {
         redirect('peliculas/index');
     }
@@ -56,7 +59,7 @@ class Peliculas extends CI_Controller {
     $data['usuario'] = $this->session->userdata('usuario');
     $data['enlaces'] = $this->crear_enlaces($pag, $npags);
 
-    $this->load->view('peliculas_index', $data);
+    $this->template->load('template', 'peliculas_index', $data);
   }
   
   function editar($num = null) {
@@ -70,10 +73,10 @@ class Peliculas extends CI_Controller {
     if (!$this->input->post('editar')) {
       $consulta = $this->Pelicula->obtener_pelicula($num);
       if (!$consulta) {
-        $this->load->view('peliculas_editar_error');
+        $this->template->load('template', 'peliculas_editar_error');
       } else {
         $data = array_merge($data, $consulta);
-      	$this->load->view('peliculas_editar', $data);
+      	$this->template->load('template', 'peliculas_editar', $data);
       }
     } else {
       $codigo = $this->input->post('codigo');
@@ -91,12 +94,13 @@ class Peliculas extends CI_Controller {
 	$data['precio_alq'] = $precio_alq;
 	$data['fech_alt_pel'] = $fech_alt_pel;
 	$data['activa'] = $activa;
-        $this->load->view('peliculas_editar', $data);
+        $this->template->load('template', 'peliculas_editar', $data);
       }
     }
   }
  
   function crear() {
+	$data['usuario'] = $this->session->userdata('usuario');
   	$this->load->library('form_validation');
   	$this->form_validation->set_rules('codigo', 'Codigo',
   	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
@@ -104,7 +108,7 @@ class Peliculas extends CI_Controller {
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
   	
     if (!$this->input->post('crear')) {
-      $this->load->view('peliculas_crear');
+      $this->template->load('template', 'peliculas_crear', $data);
     } else {
       if ($this->form_validation->run() == TRUE) {
         $codigo = $this->input->post('codigo');
@@ -114,7 +118,7 @@ class Peliculas extends CI_Controller {
         $this->session->set_flashdata('exito', 'Pelicula creada con éxito');
         redirect('peliculas/index');
       } else {
-        $this->load->view('peliculas_crear');
+        $this->template->load('template', 'peliculas_crear', $data);
       }
     }
   }

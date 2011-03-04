@@ -15,7 +15,7 @@ class Alquileres extends CI_Controller {
   function index() {
     $data['exito'] = "";
     $data['usuario'] = $this->session->userdata('usuario');
-    $this->load->view('alquileres_index', $data);
+    $this->template->load('template', 'alquileres_index', $data);
   }
   
   function seleccionar_socio() {
@@ -25,7 +25,7 @@ class Alquileres extends CI_Controller {
                                       'trim|required|is_natural_no_zero');
     if (!$this->input->post('buscar') && !$this->session->userdata('socio')) {
       $data['exito'] = "Pasa por aqui";
-      $this->load->view('alquileres_index', $data);
+     $this->template->load('template', 'alquileres_index', $data);
     } else {
       if ($this->form_validation->run() == TRUE || $this->session->userdata('socio')) {
         if ($this->input->post('numero')) {
@@ -41,7 +41,7 @@ class Alquileres extends CI_Controller {
         if ($consulta != false) {
           $data = array_merge($data, $consulta);
           $data['filas'] = $this->Alquiler->obtener_alquileres($num);
-          $this->load->view('alquileres_socio', $data);
+          $this->template->load('template', 'alquileres_socio', $data);
         } else {
           redirect('alquileres', $data);
         }
@@ -66,7 +66,7 @@ class Alquileres extends CI_Controller {
       $data = array_merge($data, $consulta);
       $data['filas'] = $this->Alquiler->obtener_alquileres($num);
     }
-    $this->load->view('alquileres_socio', $data);
+    $this->template->load('template', 'alquileres_socio', $data);
   }
   
   function solicitar() {
@@ -89,7 +89,7 @@ class Alquileres extends CI_Controller {
       $data = array_merge($data, $consulta);
       $data['filas'] = $this->Alquiler->obtener_alquileres($num);
     }
-    $this->load->view('alquileres_socio', $data);
+    $this->template->load('template', 'alquileres_socio', $data);
   }
   
   function alquilar() {
@@ -106,7 +106,7 @@ class Alquileres extends CI_Controller {
       $data = array_merge($data, $consulta);
       $data['filas'] = $this->Alquiler->obtener_alquileres($num);
     }
-    $this->load->view('alquileres_socio', $data);
+    $this->template->load('template', 'alquileres_socio', $data);
   }
   
 }
