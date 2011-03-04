@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
@@ -21,7 +20,6 @@
            
   </body>
 </html>
-=======
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
@@ -43,4 +41,3 @@
   </div>         
   </body>
 </html>
->>>>>>> 53c0a73f09bb0b76d2753960e9f95ba5e8d91e91
