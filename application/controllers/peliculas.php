@@ -89,9 +89,9 @@ class Peliculas extends CI_Controller {
   function crear() {
 	$data['usuario'] = $this->session->userdata('usuario');
   	$this->load->library('form_validation');
-  	$this->form_validation->set_rules('codigo', 'Codigo',
+  	$this->form_validation->set_rules('codigo', 'Código',
   	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
-  	$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required');
+  	$this->form_validation->set_rules('titulo', 'Título', 'trim|required');
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
   	
     if (!$this->input->post('crear')) {
