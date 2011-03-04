@@ -35,13 +35,26 @@ class Peliculas extends CI_Controller {
     return $enlaces;
   }
     
-  function index($pag = 1, $filtrar = '', $campo = '', $filtro = '') {
+  function index($pag = 1) {
+	$activa = 'a';
+	$campo = '';
+	$filtro = '';
+    if($this->input->post('filtrar')){
+	$activa = $this->input->post('activa');
+	$campo = $this->input->post('campo');
+	$filtro = $this->input->post('filtro');
+    }
+    $this->load->model('Socio');
+    $nfilas = $this->Socio->numero_socios();
+    $npags = max(ceil($nfilas / FPP), 1);
+    $pag = max($pag, 1);
     $nfilas = $this->Pelicula->numero_peliculas();
     $npags = ceil($nfilas / FPP);
+
     if ($pag > $npags) {
-      redirect('peliculas/index');
+        redirect('peliculas/index');
     }
-    $data['filas']   = $this->Pelicula->obtener_todas(FPP, ($pag - 1) * FPP);
+    $data['filas']   = $this->Pelicula->obtener_todas(FPP, ($pag - 1) * FPP, $activa, $campo, $filtro);
     $data['exito']   = $this->session->flashdata('exito');
     $data['usuario'] = $this->session->userdata('usuario');
     $data['enlaces'] = $this->crear_enlaces($pag, $npags);
@@ -87,6 +100,7 @@ class Peliculas extends CI_Controller {
   }
  
   function crear() {
+	$data['usuario'] = $this->session->userdata('usuario');
   	$this->load->library('form_validation');
   	$this->form_validation->set_rules('codigo', 'Codigo',
   	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
@@ -94,7 +108,7 @@ class Peliculas extends CI_Controller {
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
   	
     if (!$this->input->post('crear')) {
-      $this->template->load('template', 'peliculas_crear');
+      $this->template->load('template', 'peliculas_crear', $data);
     } else {
       if ($this->form_validation->run() == TRUE) {
         $codigo = $this->input->post('codigo');
@@ -104,7 +118,7 @@ class Peliculas extends CI_Controller {
         $this->session->set_flashdata('exito', 'Pelicula creada con éxito');
         redirect('peliculas/index');
       } else {
-        $this->template->load('template', 'peliculas_crear');
+        $this->template->load('template', 'peliculas_crear', $data);
       }
     }
   }
