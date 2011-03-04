@@ -13,7 +13,7 @@
   <?php if (isset($filas)): ?>
   <div style="margin: 30px">
               <p align="center" style="font-size:1.7em">Pendientes del socio</p>
-              <table border="1" style="margin:auto">
+              <table border="0" style="margin:auto">
                 <thead>
                   <th>Código</th><th>Título</th><th>Fecha alquiler</th><th>Devolver</th>
                 </thead>
@@ -53,7 +53,6 @@
     No disponible
     <?php endif; ?>
   </div>
-  <?php endif; ?>
-    </div>    
+  <?php endif; ?> 
    
 
