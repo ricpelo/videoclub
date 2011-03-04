@@ -36,12 +36,25 @@ class Peliculas extends CI_Controller {
   }
     
   function index($pag = 1) {
+	$activa = 'a';
+	$campo = '';
+	$filtro = '';
+    if($this->input->post('filtrar')){
+	$activa = $this->input->post('activa');
+	$campo = $this->input->post('campo');
+	$filtro = $this->input->post('filtro');
+    }
+    $this->load->model('Socio');
+    $nfilas = $this->Socio->numero_socios();
+    $npags = max(ceil($nfilas / FPP), 1);
+    $pag = max($pag, 1);
     $nfilas = $this->Pelicula->numero_peliculas();
     $npags = ceil($nfilas / FPP);
+
     if ($pag > $npags) {
-      redirect('peliculas/index');
+        redirect('peliculas/index');
     }
-    $data['filas']   = $this->Pelicula->obtener_todas(FPP, ($pag - 1) * FPP);
+    $data['filas']   = $this->Pelicula->obtener_todas(FPP, ($pag - 1) * FPP, $activa, $campo, $filtro);
     $data['exito']   = $this->session->flashdata('exito');
     $data['usuario'] = $this->session->userdata('usuario');
     $data['enlaces'] = $this->crear_enlaces($pag, $npags);
