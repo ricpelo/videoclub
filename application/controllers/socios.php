@@ -108,7 +108,7 @@ class Socios extends CI_Controller {
   
   function numero_unico($num) {
     $consulta = $this->Socio->obtener_socio($num);
-    if (!$consulta) {
+    if ($consulta) {
       $this->form_validation->set_message('numero_unico', 'El campo %s debe ser único');
       return FALSE;
     } else {
