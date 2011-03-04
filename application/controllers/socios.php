@@ -91,7 +91,7 @@ class Socios extends CI_Controller {
   	$this->form_validation->set_rules('apellidos', 'Apellidos', 'trim|required');
   	
     if (!$this->input->post('crear')) {
-      $$this->template->load('template' ,'socios_crear', $data);
+      $this->template->load('template' ,'socios_crear', $data);
     } else {
       if ($this->form_validation->run() == TRUE) {
         $numero = $this->input->post('numero');
