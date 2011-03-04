@@ -13,7 +13,12 @@ class Alquileres extends CI_Controller {
   }
   
   function index() {
+    if (!$this->input->post('exito')) {	
     $data['exito'] = "";
+    }
+    else {
+    $data['exito']= $this->input->post('exito');	
+   }	
     $data['usuario'] = $this->session->userdata('usuario');
     $this->template->load('template', 'alquileres_index', $data);
   }
@@ -43,7 +48,7 @@ class Alquileres extends CI_Controller {
           $data['filas'] = $this->Alquiler->obtener_alquileres($num);
           $this->template->load('template', 'alquileres_socio', $data);
         } else {
-          $this->template->load('template', 'alquileres_index.php', $data);
+          $this->template->load('template', 'alquileres_index', $data);
         }
       } else {
         $data['exito'] = "No se valida el formulario";

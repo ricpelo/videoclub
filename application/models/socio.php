@@ -14,7 +14,7 @@ class Socio extends CI_Model {
                                     from socios
                                     $limit
                                     offset $offset");
-      return ($consulta->num_rows() > 0) ? $consulta->result_array() : false;
+      return $consulta->result_array();
     } else {
       return false;
     }

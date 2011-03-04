@@ -9,6 +9,6 @@
     <?= form_close() ?>
     <?= form_open('usuarios/crear') ?>
     <?= form_submit('crear', 'Registrarse') ?>
-    <?= form_close() ?></p
+    <?= form_close() ?></p>
 
 
