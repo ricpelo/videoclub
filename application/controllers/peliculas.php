@@ -35,7 +35,7 @@ class Peliculas extends CI_Controller {
     return $enlaces;
   }
     
-  function index($pag = 1, $filtrar = '', $campo = '', $filtro = '') {
+  function index($pag = 1) {
     $nfilas = $this->Pelicula->numero_peliculas();
     $npags = ceil($nfilas / FPP);
     if ($pag > $npags) {
