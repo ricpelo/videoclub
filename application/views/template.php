@@ -8,8 +8,8 @@
   <body>
   <div id="principal">
 	<div id="cabecera">
-	  <h1>Gestión de Videoclub</h1>
-	  <p><h3><?= anchor('principales/index', 'Menu Principal |') . " " . anchor('socios/index/', 'Socios |') . " " . anchor('peliculas/index/', 'Peliculas |') . " " . anchor('alquileres/index/', 'Alquileres') . " " . form_open('usuarios/logout') . '<p align="right">Usuario: ' . $usuario . " ". form_submit('salir', 'Salir') . "</p>" . form_close() ?></h3><hr/></p>
+	  <table><td><h1>Gestión de Videoclub</h1></td><td><div id="usuario">Usuario: <?= $usuario . " ". form_submit('salir', 'Salir') . form_close() ?></div></td></table>
+	  <p><h3><?= anchor('principales/index', 'Menu Principal |') . " " . anchor('socios/index/', 'Socios |') . " " . anchor('peliculas/index/', 'Peliculas |') . " " . anchor('alquileres/index/', 'Alquileres') . " " . form_open('usuarios/logout') . "</h3></p>" ?>
 	</div>
     <div id="validaciones"><p><?= validation_errors() ?></p></div>
     <div id="contenido">
