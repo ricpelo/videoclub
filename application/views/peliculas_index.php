@@ -30,3 +30,4 @@
     <p><?= anchor('peliculas/crear/', 'Añadir película') ?></p>
     
 
+

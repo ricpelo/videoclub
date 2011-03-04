@@ -6,4 +6,4 @@
       <?= form_input('password', set_value('password')) ?><br/>
       <?= form_submit('crear', 'Crear') ?>
     <?= form_close() ?></p>
-     
+

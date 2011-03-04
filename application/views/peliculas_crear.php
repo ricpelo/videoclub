@@ -9,4 +9,4 @@
       <?= form_submit('crear', 'Crear') ?>
       <?= anchor('socios/index', 'Volver') ?>
     <?= form_close() ?></p>
-   
+
