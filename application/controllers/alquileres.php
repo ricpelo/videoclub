@@ -27,12 +27,12 @@ class Alquileres extends CI_Controller {
     $data['usuario'] = $this->session->userdata('usuario');
     $this->load->library('form_validation');
     $this->form_validation->set_rules('numero', 'Número',
-                                      'trim|required|is_natural_no_zero');
+                                   'trim|required|is_natural_no_zero|callback_socio_existe');
     if (!$this->input->post('buscar') && !$this->session->userdata('socio')) {
       $data['exito'] = "Pasa por aqui";
-     $this->template->load('template', 'alquileres_index', $data);
+      $this->template->load('template', 'alquileres_index', $data);
     } else {
-      if ($this->form_validation->run() == TRUE || $this->session->userdata('socio')) {
+      if (($this->form_validation->run() == TRUE) || ($this->session->userdata('socio'))) {
         if ($this->input->post('numero')) {
           $num = $this->input->post('numero');
           $this->session->set_userdata('socio', $num);
@@ -43,12 +43,11 @@ class Alquileres extends CI_Controller {
         $data['socio'] = $num;      
         $this->load->model('Socio');
         $consulta = $this->Socio->obtener_socio($num);
-        if ($consulta != false) {
+        if ($consulta) {
           $data = array_merge($data, $consulta);
           $data['filas'] = $this->Alquiler->obtener_alquileres($num);
           $this->template->load('template', 'alquileres_socio', $data);
         } else {
-	  $data['exito'] = "El socio no existe";
           $this->template->load('template', 'alquileres_index', $data);
         }
       } else {
@@ -115,5 +114,15 @@ class Alquileres extends CI_Controller {
     $this->template->load('template', 'alquileres_socio', $data);
   }
   
+  function socio_existe($num) {
+    $this->load->model('Socio');
+    $consulta = $this->Socio->obtener_socio($num);
+    if ($consulta) {
+      return true;
+    } else {
+      $this->form_validation->set_message('socio_existe', 'El socio %s debe existir');
+      return false;
+    }
+  }
 }
 ?>
