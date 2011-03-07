@@ -26,10 +26,10 @@ class Socio extends CI_Model {
     return ($consulta->num_rows() > 0) ? $consulta->row_array() : false;
   }
    
-  function cambiar_socio($num, $nom, $ape) {
+  function cambiar_socio($id_socio, $num, $nom, $ape) {
     return $this->db->query("update socios
-                             set nombre = '$nom', apellidos = '$ape'
-                             where numero = $num");
+                             set numero = $num, nombre = '$nom', apellidos = '$ape'
+                             where id_socio= $id_socio ");
   }
   
   function crear_socio($num, $nom, $ape) {

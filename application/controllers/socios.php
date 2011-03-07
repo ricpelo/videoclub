@@ -47,7 +47,7 @@ class Socios extends CI_Controller {
     $data['exito']   = $this->session->flashdata('exito');
     $data['usuario'] = $this->session->userdata('usuario');
     $data['enlaces'] = $this->crear_enlaces($pag, $npags);
-
+   
     $this->template->load('template', 'socios_index', $data);
   }
   
@@ -70,8 +70,9 @@ class Socios extends CI_Controller {
       $numero = $this->input->post('numero');
       $nombre = $this->input->post('nombre');
       $apellidos = $this->input->post('apellidos');
+      $id_socio = $this->input->post('id_socio');	
       if ($this->form_validation->run() == TRUE) {
-        $this->Socio->cambiar_socio($numero, $nombre, $apellidos);
+        $this->Socio->cambiar_socio($id_socio, $numero, $nombre, $apellidos);
         $this->session->set_flashdata('exito', 'Socio cambiado con éxito');
         redirect('socios/index');          
       } else {
