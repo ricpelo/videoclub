@@ -1,0 +1,15 @@
+<div id = "novedades">
+	<!-- <p><?= anchor('socios/index/','Ir a gestión de socio') ?> <p/> --> 
+ 	<!-- <p><?= anchor('peliculas/index/','Ir a gestión de peliculas') ?><p/> -->
+<fieldset><legend><h1>Novedades en el videoclub</h1></legend>
+<table> 	<td>
+			<tr></tr><tr></tr><tr></tr>
+			</td> <td>
+			<tr></tr><tr></tr><tr></tr>
+			</td><td>
+			<tr></tr><tr></tr><tr></tr>
+			</td><td></td></table>
+</fieldset>
+</div>
+   
+
