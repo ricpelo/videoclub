@@ -12,7 +12,7 @@ body {
 	background-color: #FFF;
 	margin-top: 0px;
 	margin-left: 0px;
-	background-image: url(images/fondo.jpg);
+	background-image: url(../images/fondo.jpg);
 	background-repeat: repeat-x;
 }
 #principal a {
@@ -55,7 +55,7 @@ td {
 	padding-right: 20px;
 	padding-bottom: 5px;
 	padding-left: 20px;
-	background-image: url(images/cab-videoclub.jpg);
+	background-image: url(../images/cab-videoclub.jpg);
 }
 #principal #usuario {
 	float:right;
