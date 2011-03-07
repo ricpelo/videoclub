@@ -56,6 +56,7 @@ td {
 	padding-bottom: 5px;
 	padding-left: 20px;
 	background-image: url(../images/cab-videoclub.jpg);
+	background-repeat: repeat-x;
 }
 #principal #usuario {
 	float:right;

@@ -1,7 +1,8 @@
 
     <p><?= form_open('peliculas/editar') ?>
+      <?= form_hidden('id_pelicula', $id_pelicula) ?>
       <?= form_label('Código:', 'codigo') ?>
-      <?= form_input('codigo', set_value('codigo', $codigo), 'readonly') ?><br/>
+      <?= form_input('codigo', set_value('codigo', $codigo)) ?><br/>
       <?= form_label('Titulo:', 'titulo') ?>
       <?= form_input('titulo', set_value('titulo', $titulo)) ?><br/>
       <?= form_label('Precio Alq:', 'precio_alq') ?>
