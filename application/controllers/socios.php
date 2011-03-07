@@ -76,6 +76,7 @@ class Socios extends CI_Controller {
         $this->session->set_flashdata('exito', 'Socio cambiado con éxito');
         redirect('socios/index');          
       } else {
+        $data['id_socio'] = $id_socio;
         $data['numero'] = $numero;
         $data['nombre'] = $nombre;
         $data['apellidos'] = $apellidos;
@@ -117,14 +118,19 @@ class Socios extends CI_Controller {
       return TRUE;
     }
   }
-  function borrar($numero) {
-   //pregunta si esta declarada la variable borrar
+  function borrar($num) {
+   $data['usuario'] = $this->session->userdata('usuario');
     if (!$this->input->post('borrar')) {
-	$data['numero'] = $numero;
-      $this->template->load('template', 'socios_borrar', $data);
+	$consulta = $this->Socio->obtener_socio($num);
+      if (!$consulta) {
+        $this->template->load('template', 'socios_borrar_error');
+      } else {
+        $data = array_merge($data, $consulta);
+      	$this->template->load('template', 'socios_borrar', $data);
+      }
     } else {
-        $numero = $this->input->post('numero');
-        $this->Socio->borrar_socio($numero);
+        $id_socio = $this->input->post('id_socio');
+        $this->Socio->borrar_socio($id_socio);
         $this->session->set_flashdata('exito', 'Socio borrado con éxito');
         redirect('socios/index');
       }

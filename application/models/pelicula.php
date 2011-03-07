@@ -53,9 +53,9 @@ class Pelicula extends CI_Model {
     return !$this->esta_disponible($cod);
   }
   
-  function borrar_pelicula($cod) {
+  function borrar_pelicula($id) {
     $consulta = $this->db->query("update peliculas									 					set activa = not activa
-    				where codigo = $cod");
+    				where id_pelicula = $id");
   }
    
   function cambiar_pelicula($id_pelicula, $cod, $tit, $pre_alq, $fech_alt) {

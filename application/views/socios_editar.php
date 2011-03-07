@@ -1,7 +1,8 @@
 
     <p><?= form_open('socios/editar') ?>
+      <?= form_hidden('id_socio',set_value('id_socio', $id_socio)) ?>
       <?= form_label('Número:', 'numero') ?>
-      <?= form_input('numero', set_value('numero', $numero), 'readonly') ?><br/>
+      <?= form_input('numero', set_value('numero', $numero)) ?><br/>
       <?= form_label('Nombre:', 'nombre') ?>
       <?= form_input('nombre', set_value('nombre', $nombre)) ?><br/>
       <?= form_label('Apellidos:', 'apellidos') ?>

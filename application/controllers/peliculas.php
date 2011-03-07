@@ -90,6 +90,7 @@ class Peliculas extends CI_Controller {
         $this->session->set_flashdata('exito', 'Pelicula cambiada con éxito');
         redirect('peliculas/index');          
       } else {
+	$data['id_pelicula'] = $id_pelicula;
         $data['codigo'] = $codigo;
         $data['titulo'] = $titulo;
 	$data['precio_alq'] = $precio_alq;

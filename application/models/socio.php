@@ -43,8 +43,8 @@ class Socio extends CI_Model {
     return $cantidad['cantidad'];
   }
   
-  function borrar_socio($num) {
-    return $this->db->query("delete from socios where numero = $num");
+  function borrar_socio($id) {
+    return $this->db->query("delete from socios where id_socio = $id cascade");
   }
 }
 ?>

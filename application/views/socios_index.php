@@ -7,13 +7,14 @@
       <tbody>
         <?php foreach ($filas as $fila): ?>
           <tr>
+            
             <td><?= anchor('socios/editar/' . $fila['numero'],
                            $fila['numero']) ?></td>
             <td><?= anchor('socios/editar/' . $fila['numero'],
                            $fila['nombre']) ?></td>
             <td><?= anchor('socios/editar/' . $fila['numero'],
                            $fila['apellidos']) ?></td>
-	  <td><?= anchor('socios/borrar/' . $fila['numero'], 'Borrar') ?></td>
+	  <td><?= anchor('socios/borrar/' . $fila['numero']  , 'Borrar') ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
