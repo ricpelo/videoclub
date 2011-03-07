@@ -9,8 +9,7 @@
   <div id="principal">
 	<div id="cabecera">
 	  <table><td><h1>Gestión de Videoclub</h1></td><td><div id="usuario"><?= form_open('usuarios/logout') ?>Usuario: <?= $usuario . " ". form_submit('salir', 'Salir') . form_close() ?></div></td></table>
-	  <p><h3><?= anchor('principales/index', 'Menu Principal |') . " " . anchor('socios/index/', 'Socios |') . " " . anchor('peliculas/index/', 'Peliculas |') . " " . anchor('alquileres/index/', 'Alquileres') . " </h3></p>" ?>
-	</div>
+	  <p><h3><?= anchor('principales/index', 'Menu Principal')?> | <?= anchor('socios/index', 'Socios')?> |  <?= anchor('peliculas/index', 'Peliculas')?> | <?= anchor('alquileres/index', 'Alquileres')?> </h3></p></div>
     <div id="validaciones"><p><?= validation_errors() ?></p></div>
     <div id="contenido">
     <p><?= $contents ?></p>

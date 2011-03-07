@@ -1,5 +1,4 @@
 
-
     <p><?= form_open('peliculas/index') ?>
       <?= form_fieldset('Filtrar')?>
       <?= form_radio(array("name"=>"activa","value"=>"a" ,"checked" => "true")) ?> Activas
@@ -11,9 +10,6 @@
       <?= form_submit('filtrar', 'Filtrar') ?>
       <?= form_fieldset_close() ?>
     <?= form_close() ?></p>
-
-
-    <div id="contenido">
 
     <p><?= $exito ?></p>
     <p><table border="0">

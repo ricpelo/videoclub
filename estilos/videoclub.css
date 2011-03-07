@@ -12,7 +12,7 @@ body {
 	background-color: #FFF;
 	margin-top: 0px;
 	margin-left: 0px;
-	background-image: url(../imagenes/fondo.jpg);
+	background-image: url(../images/fondo.jpg);
 	background-repeat: repeat-x;
 }
 #principal a {
@@ -21,6 +21,11 @@ body {
 }
 #principal a:hover {
 	color: #900;
+	text-decoration: none;
+}
+
+#principal a:active {
+	color: #FF0080;
 	text-decoration: none;
 }
 
@@ -50,6 +55,7 @@ td {
 	padding-right: 20px;
 	padding-bottom: 5px;
 	padding-left: 20px;
+	background-image: url(../images/cab-videoclub.jpg);
 }
 #principal #usuario {
 	float:right;
@@ -68,7 +74,7 @@ td {
 	text-decoration: none;
 }
 #principal #cabecera anchor:active {
-	color: #CC0;
+	color: #FF0080;
 	text-decoration: none;
 }
 #principal #cabecera a {
@@ -80,11 +86,30 @@ td {
 	text-decoration: none;
 }
 #principal #cabecera a:active {
-	color: #CC0;
+	color: #FF0080;
 	text-decoration: none;
 }
 #principal #contenido {
 	padding: 20px;
+}
+#principal #contenido #novedades{
+	padding: 20px;
+}
+#principal #contenido #novedades h1{
+	color: #006291;
+}
+#principal #contenido #novedades div{
+    width: 230px;
+    height: 270px;
+    background-color: #E9F3F9;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#principal #contenido #novedades fieldset{
+     background-color: #FFF;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
 }
 #principal #pie_pag {
 	font-size: 10px;
