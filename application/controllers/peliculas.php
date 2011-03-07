@@ -84,8 +84,9 @@ class Peliculas extends CI_Controller {
       $precio_alq = $this->input->post('precio_alq');
       $fech_alt_pel = $this->input->post('fech_alt_pel');
       $activa = $this->input->post('activa'); 
+      $id_socio = $this->input->post('id_socio');
       if ($this->form_validation->run() == TRUE) {
-        $this->Pelicula->cambiar_pelicula($codigo, $titulo, $precio_alq, $fech_alt_pel, $activa);
+        $this->Pelicula->cambiar_pelicula($id_socio, $codigo, $titulo, $precio_alq, $fech_alt_pel, $activa);
         $this->session->set_flashdata('exito', 'Pelicula cambiada con éxito');
         redirect('peliculas/index');          
       } else {
