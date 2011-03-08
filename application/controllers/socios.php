@@ -38,16 +38,17 @@ class Socios extends CI_Controller {
     
   function index($pag = 1) {
     $nfilas = $this->Socio->numero_socios();
-    $npags = ceil($nfilas / FPP);
+    $npags = max(ceil($nfilas / FPP), 1);
+    $pag = max($pag, 1);
     if ($pag > $npags) {
-      redirect('socios/index');
+        redirect('socios/index');
     }
     $data['filas']   = $this->Socio->obtener_todos(FPP, ($pag - 1) * FPP);
     $data['exito']   = $this->session->flashdata('exito');
     $data['usuario'] = $this->session->userdata('usuario');
     $data['enlaces'] = $this->crear_enlaces($pag, $npags);
 
-    $this->load->view('socios_index', $data);
+    $this->template->load('template', 'socios_index', $data);
   }
   
   function editar($num = null) {
@@ -60,10 +61,10 @@ class Socios extends CI_Controller {
     if (!$this->input->post('editar')) {
       $consulta = $this->Socio->obtener_socio($num);
       if (!$consulta) {
-        $this->load->view('socios_editar_error');
+        $this->template->load('template', 'socios_editar_error');
       } else {
         $data = array_merge($data, $consulta);
-      	$this->load->view('socios_editar', $data);
+      	$this->template->load('template', 'socios_editar', $data);
       }
     } else {
       $numero = $this->input->post('numero');
@@ -77,12 +78,13 @@ class Socios extends CI_Controller {
         $data['numero'] = $numero;
         $data['nombre'] = $nombre;
         $data['apellidos'] = $apellidos;
-        $this->load->view('socios_editar', $data);
+        $this->template->load('template', 'socios_editar', $data);
       }
     }
   }
   
   function crear() {
+	$data['usuario'] = $this->session->userdata('usuario');
   	$this->load->library('form_validation');
   	$this->form_validation->set_rules('numero', 'Número',
   	                        'trim|required|is_natural_no_zero|callback_numero_unico');
@@ -90,7 +92,7 @@ class Socios extends CI_Controller {
   	$this->form_validation->set_rules('apellidos', 'Apellidos', 'trim|required');
   	
     if (!$this->input->post('crear')) {
-      $this->load->view('socios_crear');
+      $this->template->load('template' ,'socios_crear', $data);
     } else {
       if ($this->form_validation->run() == TRUE) {
         $numero = $this->input->post('numero');
@@ -100,14 +102,14 @@ class Socios extends CI_Controller {
         $this->session->set_flashdata('exito', 'Socio creado con éxito');
         redirect('socios/index');
       } else {
-        $this->load->view('socios_crear');
+        $this->template->load('template', 'socios_crear', $data);
       }
     }
   }
   
   function numero_unico($num) {
     $consulta = $this->Socio->obtener_socio($num);
-    if (!$consulta) {
+    if ($consulta) {
       $this->form_validation->set_message('numero_unico', 'El campo %s debe ser único');
       return FALSE;
     } else {
@@ -118,7 +120,7 @@ class Socios extends CI_Controller {
    //pregunta si esta declarada la variable borrar
     if (!$this->input->post('borrar')) {
 	$data['numero'] = $numero;
-      $this->load->view('socios_borrar', $data);
+      $this->template->load('template', 'socios_borrar', $data);
     } else {
         $numero = $this->input->post('numero');
         $this->Socio->borrar_socio($numero);
