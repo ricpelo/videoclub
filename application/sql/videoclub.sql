@@ -38,11 +38,11 @@ drop table alquileres cascade;
 
 create table alquileres (
   id_alquiler bigserial constraint pk_alquileres primary key,
-  id_socio bigint constraint fk_alquileres_socios references socios (id_socio)
+  id_socio bigint not null constraint fk_alquileres_socios references socios (id_socio)
                   on delete no action on update cascade,
-  id_pelicula bigint constraint fk_alquileres_peliculas references peliculas (id_pelicula)
+  id_pelicula bigint not null constraint fk_alquileres_peliculas references peliculas (id_pelicula)
                      on delete no action on update cascade,
-  falq   date,
+  falq   date not null default current_date,
   fdev   date
 ) without oids;
 
