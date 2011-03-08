@@ -66,7 +66,7 @@ class Peliculas extends CI_Controller {
     $data['usuario'] = $this->session->userdata('usuario');
   	$this->load->library('form_validation');
   	$this->form_validation->set_rules('codigo', 'Codigo',
-  	                        'trim|required|is_natural_no_zero');
+  	                        'trim|required|is_natural_no_zero|callback_codigo_unico');
   	$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required');
   	$this->form_validation->set_rules('precio_alq', 'Precio alquiler', 'trim|required');
 	
@@ -76,6 +76,7 @@ class Peliculas extends CI_Controller {
         $this->template->load('template', 'peliculas_editar_error');
       } else {
         $data = array_merge($data, $consulta);
+        $data['codigo_original'] = $consulta['codigo'];
       	$this->template->load('template', 'peliculas_editar', $data);
       }
     } else {
@@ -84,9 +85,9 @@ class Peliculas extends CI_Controller {
       $precio_alq = $this->input->post('precio_alq');
       $fech_alt_pel = $this->input->post('fech_alt_pel');
       $activa = $this->input->post('activa'); 
-      $id_socio = $this->input->post('id_socio');
+      $id_pelicula = $this->input->post('id_pelicula');
       if ($this->form_validation->run() == TRUE) {
-        $this->Pelicula->cambiar_pelicula($id_socio, $codigo, $titulo, $precio_alq, $fech_alt_pel, $activa);
+        $this->Pelicula->cambiar_pelicula($id_pelicula, $codigo, $titulo, $precio_alq, $fech_alt_pel, $activa);
         $this->session->set_flashdata('exito', 'Pelicula cambiada con éxito');
         redirect('peliculas/index');          
       } else {
@@ -96,6 +97,7 @@ class Peliculas extends CI_Controller {
 	$data['precio_alq'] = $precio_alq;
 	$data['fech_alt_pel'] = $fech_alt_pel;
 	$data['activa'] = $activa;
+        $data['codigo_original'] = $this->input->post('codigo_original');
         $this->template->load('template', 'peliculas_editar', $data);
       }
     }
@@ -127,7 +129,7 @@ class Peliculas extends CI_Controller {
   
   function codigo_unico($cod) {
     $consulta = $this->Pelicula->obtener_pelicula($cod);
-    if ($consulta) {
+    if ($consulta && $cod != $this->input->post('codigo_original')) {
       $this->form_validation->set_message('codigo_unico', 'El campo %s debe ser único');
       return FALSE;
     } else {

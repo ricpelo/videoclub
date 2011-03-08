@@ -59,6 +59,7 @@ class Socios extends CI_Controller {
   	$this->form_validation->set_rules('nombre', 'Nombre', 'trim|required');
   	$this->form_validation->set_rules('apellidos', 'Apellidos', 'trim|required');
     if (!$this->input->post('editar')) {
+      $this->session->set_userdata('numero', $num);
       $consulta = $this->Socio->obtener_socio($num);
       if (!$consulta) {
         $this->template->load('template', 'socios_editar_error');
@@ -73,6 +74,7 @@ class Socios extends CI_Controller {
       $id_socio = $this->input->post('id_socio');	
       if ($this->form_validation->run() == TRUE) {
         $this->Socio->cambiar_socio($id_socio, $numero, $nombre, $apellidos);
+        $this->session->unset_userdata('numero');
         $this->session->set_flashdata('exito', 'Socio cambiado con éxito');
         redirect('socios/index');          
       } else {
@@ -111,7 +113,7 @@ class Socios extends CI_Controller {
   
   function numero_unico($num) {
     $consulta = $this->Socio->obtener_socio($num);
-    if ($consulta) {
+    if ($consulta && $num != $this->session->userdata('numero')) {
       $this->form_validation->set_message('numero_unico', 'El campo %s debe ser único');
       return FALSE;
     } else {
