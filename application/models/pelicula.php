@@ -58,10 +58,10 @@ class Pelicula extends CI_Model {
     				where codigo = $cod");
   }
    
-  function cambiar_pelicula($cod, $tit, $pre_alq, $fech_alt) {
+  function cambiar_pelicula($id_pelicula, $cod, $tit, $pre_alq, $fech_alt) {
     return $this->db->query("update peliculas
-                                  set titulo = '$tit', precio_alq = $pre_alq, fech_alt_pel = '$fech_alt'
-                                  where codigo = $cod");
+                                  set codigo = $cod, titulo = '$tit', precio_alq = $pre_alq, fech_alt_pel = '$fech_alt'
+                                  where id_pelicula= $id_pelicula");
   }
 
   function crear_pelicula($cod, $tit, $pre_alq) {
