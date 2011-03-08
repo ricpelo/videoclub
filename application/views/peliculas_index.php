@@ -1,12 +1,15 @@
 
     <p><?= form_open('peliculas/index') ?>
       <?= form_fieldset('Filtrar')?>
-      <?= form_radio(array("name"=>"activa","value"=>"a" ,"checked" => "true")) ?> Activas
-      <?= form_radio(array("name"=>"activa", "value"=>"n" ,"checked" => "false")) ?> No activas
-      <?= form_radio(array("name"=>"activa","value"=>"t" ,"checked" => "false")) ?> Todas<br/>
+      <?= form_radio(array('name'=>'activa', 'value'=>'a', 'checked' => set_value('activa', 'a') == 'a')) ?> Activas
+      <?= form_radio(array('name'=>'activa', 'value'=>'n', 'checked' => set_value('activa', 'a') == 'n')) ?> No activas
+      <?= form_radio(array('name'=>'activa', 'value'=>'t', 'checked' => set_value('activa', 'a') == 't')) ?> Todas<br/>
       Buscar:
-      <?= form_dropdown('campo', array('codigo' => 'Código', 'titulo' => 'Título', 'precio_alq' => 'Precio de alquiler'), 'codigo') ?>
-      <?= form_input('filtro') ?>
+      <?= form_dropdown('campo',array('codigo' => 'Código',
+                                      'titulo' => 'Título',
+                                      'precio_alq' => 'Precio de alquiler'),
+                        set_value('campo')) ?>
+      <?= form_input('filtro', set_value('filtro')) ?>
       <?= form_submit('filtrar', 'Filtrar') ?>
       <?= form_fieldset_close() ?>
     <?= form_close() ?></p>
